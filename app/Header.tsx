@@ -81,7 +81,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex justify-between px-4 py-2 place-items-center max-w-7xl mx-auto">
+      <header className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto shadow-sm">
         <Link href="/">
           <h1 className={cn("text-2xl", oswald.className)} onClick={closeMenu}>
             CLAESNN
@@ -125,7 +125,6 @@ export default function Header() {
           </aside>
         </nav>
       )}
-      <hr />
     </>
   );
 }
