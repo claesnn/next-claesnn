@@ -1,0 +1,12 @@
+body {
+    background: url("/images/background.webp") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .header {
+    border: 0;
+  }
+  
+  .footer {
+    display: none;
+  }
