@@ -81,28 +81,33 @@ export default function Header() {
 
   return (
     <>
-      <header className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto shadow-sm">
-        <Link href="/">
-          <h1 className={cn("text-2xl", oswald.className)} onClick={closeMenu}>
-            CLAESNN
-          </h1>
-        </Link>
-
-        <button onClick={toggleMenu} className="sm:hidden">
-          {!menuOpen ? <SvgMenu /> : <SvgClose />}
-        </button>
-
-        <nav className="hidden gap-4 sm:flex">
-          {links.map((link) => (
-            <Link
-              href={link.route}
-              className="[&.active]:border-b-blue-500 [&.active]:border-b-2 text-sm"
-              key={link.name}
+      <header className="shadow-sm w-full">
+        <div className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto ">
+          <Link href="/">
+            <h1
+              className={cn("text-2xl", oswald.className)}
+              onClick={closeMenu}
             >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+              CLAESNN
+            </h1>
+          </Link>
+
+          <button onClick={toggleMenu} className="sm:hidden">
+            {!menuOpen ? <SvgMenu /> : <SvgClose />}
+          </button>
+
+          <nav className="hidden gap-4 sm:flex">
+            {links.map((link) => (
+              <Link
+                href={link.route}
+                className="[&.active]:border-b-blue-500 [&.active]:border-b-2 text-sm"
+                key={link.name}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </header>
       {menuOpen && (
         <nav className="w-full z-10 fixed top-[50px] flex">
