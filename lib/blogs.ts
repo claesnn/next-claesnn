@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-type Metadata = {
+export type BlogMetadata = {
   title: string;
   publishedAt: string;
   summary: string;
@@ -14,16 +14,16 @@ function parseFrontmatter(fileContent: string) {
   let frontMatterBlock = match![1];
   let content = fileContent.replace(frontmatterRegex, '').trim();
   let frontMatterLines = frontMatterBlock.trim().split('\n');
-  let metadata: Partial<Metadata> = {};
+  let metadata: Partial<BlogMetadata> = {};
 
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(': ');
     let value = valueArr.join(': ').trim();
     value = value.replace(/^['"](.*)['"]$/, '$1'); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
+    metadata[key.trim() as keyof BlogMetadata] = value;
   });
 
-  return { metadata: metadata as Metadata, content };
+  return { metadata: metadata as BlogMetadata, content };
 }
 
 function getMDXFiles(dir: string) {
@@ -52,3 +52,5 @@ function getMDXData(dir: string) {
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), 'content'));
 }
+
+export type BlogPost = ReturnType<typeof getBlogPosts>[number];
