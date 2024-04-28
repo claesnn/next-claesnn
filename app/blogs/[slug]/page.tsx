@@ -18,13 +18,28 @@ export default function Page({ params }: { params: { slug: string } }) {
     return <div>Blog not found</div>;
   }
 
+  function formatDate(date: string) {
+    return new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
   return (
-    <article>
-      <h2 className={cn("text-5xl mb-2", kurale.className)}>
-        {blog.metadata.title}
-      </h2>
-      <p className="text-slate-600 text-sm">{blog.metadata.summary}</p>
-      <div className="prose mt-3">
+    <article className="">
+      <div className="text-center mb-12">
+        <p className="text-xs uppercase text-slate-600 mb-2">
+          {formatDate(blog.metadata.publishedAt)}
+        </p>
+        <h2 className={cn("text-5xl mb-4", kurale.className)}>
+          {blog.metadata.title}
+        </h2>
+        <p className="text-slate-600 text-sm max-w-xl mx-auto">
+          {blog.metadata.summary}
+        </p>
+      </div>
+      <div className="prose mt-3 mx-auto">
         <MDXRemote
           source={blog.content}
           components={{ MyButton: () => <MyButton /> }}

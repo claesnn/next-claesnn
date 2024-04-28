@@ -32,7 +32,7 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
     <>
       <div className="flex flex-col space-y-6 max-w-3xl w-full">
         {sortedBlogs.map((blog) => (
-          <Link key={blog.slug} href={`/posts/${blog.slug}`}>
+          <Link key={blog.slug} href={`/blogs/${blog.slug}`}>
             <div key={blog.slug}>
               <p className="text-xs uppercase text-slate-600">
                 {formatDate(blog.metadata.publishedAt)}
