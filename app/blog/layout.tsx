@@ -1,3 +1,9 @@
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return <div className="prose lg:prose-xl">{children}</div>;
+import { LayoutProps } from "@/.next/types/app/blog/layout";
+
+export default function Layout({ children }: LayoutProps) {
+  return (
+    <section>
+      <div className="prose lg:prose-xl">{children}</div>
+    </section>
+  );
 }

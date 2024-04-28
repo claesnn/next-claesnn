@@ -8,6 +8,10 @@ import { oswald } from "@/lib/fonts";
 
 const links = [
   {
+    name: "Posts",
+    route: "/posts",
+  },
+  {
     name: "Blogs",
     route: "/blogs",
   },
