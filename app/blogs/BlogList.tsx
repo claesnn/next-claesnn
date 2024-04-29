@@ -37,7 +37,7 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
               <p className="text-xs uppercase text-slate-600">
                 {formatDate(blog.metadata.publishedAt)}
               </p>
-              <h2 className={cn("text-2xl mb-1", kurale.className)}>
+              <h2 className={cn("text-3xl mb-1", kurale.className)}>
                 {blog.metadata.title}
               </h2>
               <p className="text-slate-700">{blog.metadata.summary}</p>
@@ -46,6 +46,27 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
         ))}
       </div>
       <div className="w-[200px] mt-8 lg:mt-0 lg:ml-4">
+        <h3 className={cn("text-xl mb-4", kurale.className)}>Who am I?</h3>
+        <p className="text-sm mb-4">
+          Hi, I&apos;m Claes Nymand Nilsson, and I am a Danish biotech engineer
+          and software developer with a passion for science, technology, sports
+          and photography.
+        </p>
+        <p className="text-sm mb-4">
+          I&apos;ve been working in the biotech industry for <i>8+</i> years and
+          have increasingly been working with software development and data
+          analysis.
+        </p>
+        <img
+          src="/profile-pic-200.webp"
+          width="80"
+          height="80"
+          className="h-20 w-20 rounded-[4rem] mx-auto mb-8"
+          alt="Claes Nymand Nilsson profile"
+        />
+        <h3 className={cn("text-xl mb-4", kurale.className)}>
+          Sort and Filter
+        </h3>
         <Button
           className="w-full"
           variant="outline"

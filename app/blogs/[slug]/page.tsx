@@ -32,14 +32,14 @@ export default function Page({ params }: { params: { slug: string } }) {
         <p className="text-xs uppercase text-slate-600 mb-2">
           {formatDate(blog.metadata.publishedAt)}
         </p>
-        <h2 className={cn("text-5xl mb-4", kurale.className)}>
+        <h2 className={cn("text-4xl lg:text-6xl mb-4", kurale.className)}>
           {blog.metadata.title}
         </h2>
-        <p className="text-slate-600 text-sm max-w-xl mx-auto">
+        <p className="text-slate-600 max-w-xl mx-auto">
           {blog.metadata.summary}
         </p>
       </div>
-      <div className="prose mt-3 mx-auto">
+      <div className="prose lg:prose-lg mt-3 mx-auto">
         <MDXRemote
           source={blog.content}
           components={{ MyButton: () => <MyButton /> }}
