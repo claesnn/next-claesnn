@@ -1,3 +1,4 @@
+import AuthorInfo from "@/components/AuthorInfo";
 import MyButton from "@/components/MyButton";
 import { getBlogPosts } from "@/lib/blogs";
 import { kurale } from "@/lib/fonts";
@@ -27,7 +28,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <article className="">
+    <article>
       <div className="text-center mb-12">
         <p className="text-xs uppercase text-slate-600 mb-2">
           {formatDate(blog.metadata.publishedAt)}
@@ -44,6 +45,11 @@ export default function Page({ params }: { params: { slug: string } }) {
           source={blog.content}
           components={{ MyButton: () => <MyButton /> }}
         />
+      </div>
+      <div className="mx-auto max-w-3xl p-8 bg-slate-50 w-full rounded-lg mt-16">
+        <div className="max-w-md mx-auto space-y-4">
+          <AuthorInfo />
+        </div>
       </div>
     </article>
   );

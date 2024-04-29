@@ -1,5 +1,6 @@
 "use client";
 
+import AuthorInfo from "@/components/AuthorInfo";
 import { Button } from "@/components/ui/button";
 import { BlogPost } from "@/lib/blogs";
 import { kurale } from "@/lib/fonts";
@@ -30,8 +31,8 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
 
   return (
     <>
-      <div className="flex flex-col space-y-6 max-w-3xl w-full">
-        {sortedBlogs.map((blog) => (
+      <div className="flex flex-col space-y-6 w-full">
+        {sortedBlogs.map((blog, i) => (
           <Link key={blog.slug} href={`/blogs/${blog.slug}`}>
             <div key={blog.slug}>
               <p className="text-xs uppercase text-slate-600">
@@ -42,31 +43,13 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
               </h2>
               <p className="text-slate-700">{blog.metadata.summary}</p>
             </div>
+            {i < blogs.length - 1 && <hr className="border-slate-200 my-6" />}
           </Link>
         ))}
       </div>
-      <div className="w-[200px] mt-8 lg:mt-0 lg:ml-4">
-        <h3 className={cn("text-xl mb-4", kurale.className)}>Who am I?</h3>
-        <p className="text-sm mb-4">
-          Hi, I&apos;m Claes Nymand Nilsson, and I am a Danish biotech engineer
-          and software developer with a passion for science, technology, sports
-          and photography.
-        </p>
-        <p className="text-sm mb-4">
-          I&apos;ve been working in the biotech industry for <i>8+</i> years and
-          have increasingly been working with software development and data
-          analysis.
-        </p>
-        <img
-          src="/profile-pic-200.webp"
-          width="80"
-          height="80"
-          className="h-20 w-20 rounded-[4rem] mx-auto mb-8"
-          alt="Claes Nymand Nilsson profile"
-        />
-        <h3 className={cn("text-xl mb-4", kurale.className)}>
-          Sort and Filter
-        </h3>
+      <div className="mx-auto p-5 bg-slate-50 space-y-4 lg:w-[350px] rounded-lg mt-12 lg:mt-0 lg:ml-6 lg:mr-0">
+        <AuthorInfo />
+        <h3 className={cn("text-xl", kurale.className)}>Sort and Filter</h3>
         <Button
           className="w-full"
           variant="outline"
