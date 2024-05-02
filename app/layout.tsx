@@ -25,7 +25,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen">
           <Header />
-          <main className="p-4 max-w-7xl mx-auto">{children}</main>
+          <main className="mt-[65px] p-4 max-w-7xl mx-auto">{children}</main>
         </div>
         <Footer />
       </body>

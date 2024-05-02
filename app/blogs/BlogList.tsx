@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { BlogPost } from "@/lib/blogs";
 import { kurale } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
-  const [sorted, setSorted] = useState(false);
+  const [sorted, setSorted] = useState(true);
 
   const multiplier = sorted ? 1 : -1;
 
@@ -55,7 +56,8 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
           variant="outline"
           onClick={() => setSorted(!sorted)}
         >
-          Sort {sorted ? "asc" : "desc"}
+          <span className="mr-2">Sort</span>
+          {sorted ? <ArrowDown size={18} /> : <ArrowUp size={18} />}
         </Button>
       </div>
     </>

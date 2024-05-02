@@ -12,6 +12,32 @@ export function generateStaticParams() {
   }));
 }
 
+function BlogHeader({
+  title,
+  summary,
+  publishedAt,
+}: {
+  title: string;
+  summary: string;
+  publishedAt: string;
+}) {
+  return (
+    <div className="text-center mb-12">
+      <p className="text-xs uppercase text-slate-600 mb-2">
+        {new Date(publishedAt).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </p>
+      <h2 className={cn("text-4xl lg:text-6xl mb-4", kurale.className)}>
+        {title}
+      </h2>
+      <p className="text-slate-600 max-w-xl mx-auto">{summary}</p>
+    </div>
+  );
+}
+
 export default function Page({ params }: { params: { slug: string } }) {
   let { slug } = params;
   let blog = getBlogPosts().find((blog) => blog.slug === slug);
@@ -19,27 +45,13 @@ export default function Page({ params }: { params: { slug: string } }) {
     return <div>Blog not found</div>;
   }
 
-  function formatDate(date: string) {
-    return new Date(date).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-
   return (
     <article>
-      <div className="text-center mb-12">
-        <p className="text-xs uppercase text-slate-600 mb-2">
-          {formatDate(blog.metadata.publishedAt)}
-        </p>
-        <h2 className={cn("text-4xl lg:text-6xl mb-4", kurale.className)}>
-          {blog.metadata.title}
-        </h2>
-        <p className="text-slate-600 max-w-xl mx-auto">
-          {blog.metadata.summary}
-        </p>
-      </div>
+      <BlogHeader
+        title={blog.metadata.title}
+        summary={blog.metadata.summary}
+        publishedAt={blog.metadata.publishedAt}
+      />
       <div className="prose lg:prose-lg mt-3 mx-auto">
         <MDXRemote
           source={blog.content}

@@ -19,10 +19,6 @@ const links = [
     name: "Photography",
     route: "/photography",
   },
-  {
-    name: "About",
-    route: "/about",
-  },
 ];
 
 function SvgMenu() {
@@ -81,7 +77,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="shadow-sm w-full">
+      <header className="shadow-sm w-full fixed top-0 bg-white opacity-[98%]">
         <div className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto ">
           <Link href="/">
             <h1
