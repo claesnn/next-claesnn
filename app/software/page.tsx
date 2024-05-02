@@ -39,42 +39,39 @@ const projects: SoftwareProject[] = [
 
 export default function Page() {
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="space-y-6">
+    <div className="max-w-2xl mx-auto">
+      <div className="space-y-8">
         {projects.map((project) => (
-          <Card key={project.name}>
-            <CardHeader className="pb-4">
-              <h2 className={cn("text-3xl", kurale.className)}>
-                {project.name}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-4">{project.description}</p>
+          <div key={project.name} className="border-b last:border-b-0 pb-8">
+            <h2 className={cn("text-xl mb-4", kurale.className)}>
+              {project.name}
+            </h2>
 
-              <div className="flex space-x-2 mb-6">
-                {project.tags &&
-                  project.tags.map((tag) => (
-                    <Badge variant="secondary" key={tag}>
-                      {tag}
-                    </Badge>
-                  ))}
-              </div>
-              <div className="uppercase flex space-x-3">
-                <a href={project.url}>
-                  <Button variant="outline" size="sm">
-                    <span className="mr-2">Deployment</span>
-                    <Earth size={18} />
-                  </Button>
-                </a>
-                <a href={project.github}>
-                  <Button variant="outline" size="sm">
-                    <span className="mr-2">Github Code</span>
-                    <GitCommit size={18} />
-                  </Button>
-                </a>
-              </div>
-            </CardContent>
-          </Card>
+            <p className="mb-4">{project.description}</p>
+
+            <div className="flex space-x-2 mb-6">
+              {project.tags &&
+                project.tags.map((tag) => (
+                  <Badge variant="secondary" key={tag}>
+                    {tag}
+                  </Badge>
+                ))}
+            </div>
+            <div className="uppercase flex space-x-3">
+              <a href={project.url}>
+                <Button variant="outline" size="sm">
+                  <span className="mr-2">Deployment</span>
+                  <Earth size={18} />
+                </Button>
+              </a>
+              <a href={project.github}>
+                <Button variant="outline" size="sm">
+                  <span className="mr-2">Github Code</span>
+                  <GitCommit size={18} />
+                </Button>
+              </a>
+            </div>
+          </div>
         ))}
       </div>
     </div>
