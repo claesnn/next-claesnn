@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { oswald } from "@/lib/fonts";
+import { usePathname } from "next/navigation";
 
 const links = [
   {
@@ -64,6 +65,7 @@ function SvgClose() {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   function closeMenu() {
     setMenuOpen(false);
@@ -92,11 +94,13 @@ export default function Header() {
             {!menuOpen ? <SvgMenu /> : <SvgClose />}
           </button>
 
-          <nav className="hidden gap-4 sm:flex">
+          <nav className="hidden gap-6 sm:flex">
             {links.map((link) => (
               <Link
                 href={link.route}
-                className="[&.active]:border-b-blue-500 [&.active]:border-b-2 text-sm"
+                className={`text-sm ${
+                  pathname.startsWith(link.route) ? "underline" : ""
+                }`}
                 key={link.name}
               >
                 {link.name}
