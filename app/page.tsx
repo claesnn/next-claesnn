@@ -3,7 +3,6 @@ import { kurale } from "@/lib/fonts";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import IndexGame from "./IndexGame";
-import Image from "next/image";
 
 function IndexIntro() {
   return (
@@ -18,7 +17,7 @@ function IndexIntro() {
       </h1>
       <div className="max-w-3xl mx-auto mt-4">
         <div className="flex">
-          <Image
+          <img
             src="/profile-pic-200.webp"
             width="80"
             height="80"
@@ -152,7 +151,7 @@ function IndexBiotech() {
     <div>
       {papers.map((paper, index) => (
         <Link href={paper} key={paper}>
-          <Image
+          <img
             src={`/papers/${index}.png`}
             className="mx-auto"
             loading="lazy"
