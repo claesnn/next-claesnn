@@ -1,6 +1,9 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { kurale } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
+import { Earth, FolderGit, GitBranch, GitCommit, Github } from "lucide-react";
 
 type SoftwareProject = {
   name: string;
@@ -13,21 +16,21 @@ type SoftwareProject = {
 const projects: SoftwareProject[] = [
   {
     name: "Claesnn.com - Next.js",
-    description: "The Next.js version of this website.",
+    description: "This website :) Also, the Next.js version of claesnn.com",
     url: "https://www.claesnn.com",
     github: "https://github.com/claesnn/next-claesnn",
     tags: ["SSG", "Next.js", "Router"],
   },
   {
     name: "Claesnn.com - SvelteKit",
-    description: "The SvelteKit version of this website.",
+    description: "The SvelteKit version of claesnn.com",
     url: "https://svelte-claesnn.pages.dev/",
     github: "https://github.com/claesnn/svelte-claesnn",
-    tags: ["SSR", "SvelteKit", "Router"],
+    tags: ["SSG", "SvelteKit", "Router"],
   },
   {
     name: "Claesnn.com - TanStack Router",
-    description: "The TanStack Router (client side) version of this website.",
+    description: "The TanStack Router (client side) version of claesnn.com",
     url: "https://tan-claesnn.pages.dev/",
     github: "https://github.com/claesnn/tan_claesnn",
     tags: ["CSR", "TanStack", "Client", "Router"],
@@ -36,30 +39,44 @@ const projects: SoftwareProject[] = [
 
 export default function Page() {
   return (
-    <div>
-      <ul className="space-y-5">
+    <div className="max-w-3xl mx-auto">
+      <div className="space-y-6">
         {projects.map((project) => (
-          <li
-            key={project.name}
-            className="space-y-2 border-b pb-5 last:border-b-0"
-          >
-            <h2 className={cn("text-2xl", kurale.className)}>{project.name}</h2>
-            <p>{project.description}</p>
-            <p className="text-sm uppercase">
-              <a href={project.url}>Website</a> -{" "}
-              <a href={project.github}>GitHub</a>
-            </p>
-            <div className="flex space-x-2">
-              {project.tags &&
-                project.tags.map((tag) => (
-                  <Badge variant="secondary" key={tag}>
-                    {tag}
-                  </Badge>
-                ))}
-            </div>
-          </li>
+          <Card key={project.name}>
+            <CardHeader className="pb-4">
+              <h2 className={cn("text-3xl", kurale.className)}>
+                {project.name}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4">{project.description}</p>
+
+              <div className="flex space-x-2 mb-6">
+                {project.tags &&
+                  project.tags.map((tag) => (
+                    <Badge variant="secondary" key={tag}>
+                      {tag}
+                    </Badge>
+                  ))}
+              </div>
+              <div className="uppercase flex space-x-3">
+                <a href={project.url}>
+                  <Button variant="outline" size="sm">
+                    <span className="mr-2">Deployment</span>
+                    <Earth size={18} />
+                  </Button>
+                </a>
+                <a href={project.github}>
+                  <Button variant="outline" size="sm">
+                    <span className="mr-2">Github Code</span>
+                    <GitCommit size={18} />
+                  </Button>
+                </a>
+              </div>
+            </CardContent>
+          </Card>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
