@@ -78,6 +78,7 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
           href={`${pathname}?${
             sorted ? deleteQueryString("sortAsc") : setQueryString("sortAsc")
           }`}
+          scroll={false}
         >
           <Button className="w-full" variant="outline">
             <span className="mr-2">Sort</span>
