@@ -71,9 +71,11 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
           </Link>
         ))}
       </div>
-      <div className="mx-auto p-5 bg-slate-50 space-y-4 lg:w-[350px] rounded-lg mt-12 lg:mt-0 lg:ml-6 lg:mr-0">
+      <div className="mx-auto p-5 bg-slate-50 lg:w-[350px] rounded-lg mt-12 lg:mt-0 lg:ml-6 lg:mr-0">
         <AuthorInfo />
-        <h3 className={cn("text-xl", kurale.className)}>Sort and Filter</h3>
+        <h3 className={cn("text-xl mt-8 mb-4", kurale.className)}>
+          Sort and Filter
+        </h3>
         <Link
           href={`${pathname}?${
             sorted ? deleteQueryString("sortAsc") : setQueryString("sortAsc")
