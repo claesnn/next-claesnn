@@ -7,12 +7,35 @@ import { kurale } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
 export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
-  const [sorted, setSorted] = useState(true);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const sorted = searchParams.has("sortAsc");
 
-  const multiplier = sorted ? 1 : -1;
+  const setQueryString = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, "");
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const deleteQueryString = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete(name);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const multiplier = sorted ? -1 : 1;
 
   const sortedBlogs = blogs.sort((a, b) => {
     return (
@@ -51,14 +74,16 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
       <div className="mx-auto p-5 bg-slate-50 space-y-4 lg:w-[350px] rounded-lg mt-12 lg:mt-0 lg:ml-6 lg:mr-0">
         <AuthorInfo />
         <h3 className={cn("text-xl", kurale.className)}>Sort and Filter</h3>
-        <Button
-          className="w-full"
-          variant="outline"
-          onClick={() => setSorted(!sorted)}
+        <Link
+          href={`${pathname}?${
+            sorted ? deleteQueryString("sortAsc") : setQueryString("sortAsc")
+          }`}
         >
-          <span className="mr-2">Sort</span>
-          {sorted ? <ArrowDown size={18} /> : <ArrowUp size={18} />}
-        </Button>
+          <Button className="w-full" variant="outline">
+            <span className="mr-2">Sort</span>
+            {sorted ? <ArrowUp size={18} /> : <ArrowDown size={18} />}
+          </Button>
+        </Link>
       </div>
     </>
   );
