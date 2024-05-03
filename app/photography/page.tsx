@@ -11,7 +11,7 @@ export default function Photography() {
           <img
             src={`/images/${i}-640.webp`}
             loading={i < 6 ? "eager" : "lazy"}
-            height={i < 11 ? imageMeta[i].height : ""}
+            height={imageMeta[i].height}
             width={640}
           />
         </Link>
