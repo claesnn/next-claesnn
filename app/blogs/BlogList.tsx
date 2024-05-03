@@ -7,33 +7,25 @@ import { kurale } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
   const pathname = usePathname();
+  const { replace } = useRouter();
   const searchParams = useSearchParams();
   const sorted = searchParams.has("sortAsc");
 
-  const setQueryString = useCallback(
-    (name: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, "");
+  function toggleSort() {
+    const params = new URLSearchParams(searchParams);
 
-      return params.toString();
-    },
-    [searchParams]
-  );
+    if (sorted) {
+      params.delete("sortAsc");
+    } else {
+      params.set("sortAsc", "");
+    }
 
-  const deleteQueryString = useCallback(
-    (name: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete(name);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }
 
   const multiplier = sorted ? -1 : 1;
 
@@ -76,17 +68,10 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
         <h3 className={cn("text-xl mt-8 mb-4", kurale.className)}>
           Sort and Filter
         </h3>
-        <Link
-          href={`${pathname}?${
-            sorted ? deleteQueryString("sortAsc") : setQueryString("sortAsc")
-          }`}
-          scroll={false}
-        >
-          <Button className="w-full" variant="outline">
-            <span className="mr-2">Sort</span>
-            {sorted ? <ArrowUp size={18} /> : <ArrowDown size={18} />}
-          </Button>
-        </Link>
+        <Button className="w-full" variant="outline" onClick={toggleSort}>
+          <span className="mr-2">Sort</span>
+          {sorted ? <ArrowUp size={18} /> : <ArrowDown size={18} />}
+        </Button>
       </div>
     </>
   );
