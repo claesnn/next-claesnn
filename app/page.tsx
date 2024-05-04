@@ -3,7 +3,8 @@ import { kurale } from "@/lib/fonts"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import IndexGame from "./IndexGame"
-import { Github, Newspaper, Linkedin } from "lucide-react"
+import { Github, Newspaper, Linkedin, Car } from "lucide-react"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 function IndexHero() {
   return (
@@ -194,9 +195,8 @@ function IndexBiotech() {
 function HeaderLink({ href, text }: { href: string; text: string }) {
   return (
     <>
-      <hr className='my-8' />
       <Link href={href}>
-        <h2 className={cn("text-4xl mb-4", kurale.className)}>{text}</h2>
+        <h2 className={cn("text-4xl", kurale.className)}>{text}</h2>
       </Link>
     </>
   )
@@ -207,21 +207,40 @@ export default function Home() {
     <>
       <IndexHero />
 
-      <HeaderLink
-        href='software'
-        text='Software'
-      />
-      <IndexGame />
-      <HeaderLink
-        href='biotech'
-        text='Biotech'
-      />
-      <IndexBiotech />
-      <HeaderLink
-        href='photography'
-        text='Photography'
-      />
-      <IndexPhotos />
+      <Card className='mb-10'>
+        <CardHeader>
+          <HeaderLink
+            href='/software'
+            text='Software'
+          />
+        </CardHeader>
+        <CardContent>
+          <IndexGame />
+        </CardContent>
+      </Card>
+      <Card className='mb-10'>
+        <CardHeader>
+          <HeaderLink
+            href='/biotech'
+            text='Biotech'
+          />
+        </CardHeader>
+        <CardContent>
+          <IndexBiotech />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <HeaderLink
+            href='/photography'
+            text='Photography'
+          />
+        </CardHeader>
+        <CardContent>
+          <IndexPhotos />
+        </CardContent>
+      </Card>
     </>
   )
 }
