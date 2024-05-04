@@ -3,10 +3,9 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { oswald } from "@/lib/fonts"
 import { usePathname } from "next/navigation"
-import { Wheat } from "lucide-react"
 
 const links = [
   {
@@ -91,10 +90,30 @@ export default function Header() {
     setMenuOpen(!menuOpen)
   }
 
+  const [scroll, setScroll] = useState(false)
+
+  function checkScroll() {
+    if (window.scrollY > 10) {
+      setScroll(true)
+    } else {
+      setScroll(false)
+    }
+  }
+
+  // Reduce the py-6 to py-3 on scroll
+  useEffect(() => {
+    window.addEventListener("scroll", checkScroll)
+    return () => window.removeEventListener("scroll", checkScroll)
+  })
+
   return (
     <>
       <header className='shadow-sm w-full fixed top-0 bg-white opacity-95'>
-        <div className='flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto '>
+        <div
+          className={cn(
+            "flex justify-between px-4 place-items-center max-w-7xl mx-auto transition-all ease-in-out",
+            scroll ? "py-3" : "py-6",
+          )}>
           <Link
             href='/'
             className='flex place-items-center'>
