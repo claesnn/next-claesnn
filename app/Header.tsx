@@ -121,7 +121,9 @@ export default function Header() {
               <Link
                 href={link.route}
                 className={`text-sm ${
-                  pathname.startsWith(link.route) ? "underline" : ""
+                  pathname.startsWith(link.route)
+                    ? "underline text-blue-900"
+                    : ""
                 }`}
                 key={link.name}>
                 {link.name}
