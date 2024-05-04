@@ -1,17 +1,16 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { kurale } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
-import { Earth, FolderGit, GitBranch, GitCommit, Github } from "lucide-react";
+import AuthorInfo from "@/components/AuthorInfo"
+import { Badge } from "@/components/ui/badge"
+import { kurale } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import { Earth, GitCommit } from "lucide-react"
 
 type SoftwareProject = {
-  name: string;
-  description: string;
-  url: string;
-  github: string;
-  tags?: string[];
-};
+  name: string
+  description: string
+  url: string
+  github: string
+  tags?: string[]
+}
 
 const projects: SoftwareProject[] = [
   {
@@ -49,45 +48,89 @@ const projects: SoftwareProject[] = [
     github: "https://github.com/claesnn/website",
     tags: ["CSR", "Vue"],
   },
-];
+]
+
+function Project({
+  project,
+  className,
+  hero,
+}: {
+  project: SoftwareProject
+  className?: string
+  hero?: boolean
+}) {
+  return (
+    <div className={cn("flex flex-col w-full", className)}>
+      <h2
+        className={cn(
+          hero ? "text-4xl" : "text-2xl",
+          "mb-4 mx-auto",
+          kurale.className,
+        )}>
+        {project.name}
+      </h2>
+      <p className='mb-4 mx-auto text-slate-700'>{project.description}</p>
+      <div className='flex space-x-2 mb-6 mx-auto'>
+        {project.tags &&
+          project.tags.map((tag) => (
+            <Badge
+              variant='secondary'
+              key={tag}>
+              {tag}
+            </Badge>
+          ))}
+      </div>
+      <div className='uppercase flex space-x-4 mx-auto'>
+        <a
+          href={project.url}
+          className='flex text-sm text-blue-900'>
+          <span className='mr-2'>Deployment</span>
+          <Earth size={18} />
+        </a>
+        <a
+          href={project.github}
+          className='flex text-sm text-blue-900'>
+          <span className='mr-2'>Github Code</span>
+          <GitCommit size={18} />
+        </a>
+      </div>
+    </div>
+  )
+}
 
 export default function Page() {
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="space-y-8">
-        {projects.map((project) => (
-          <div key={project.name} className="border-b last:border-b-0 pb-8">
-            <h2 className={cn("text-xl mb-4", kurale.className)}>
-              {project.name}
-            </h2>
-
-            <p className="mb-4">{project.description}</p>
-
-            <div className="flex space-x-2 mb-6">
-              {project.tags &&
-                project.tags.map((tag) => (
-                  <Badge variant="secondary" key={tag}>
-                    {tag}
-                  </Badge>
-                ))}
-            </div>
-            <div className="uppercase flex space-x-3">
-              <a href={project.url}>
-                <Button variant="outline" size="sm">
-                  <span className="mr-2">Deployment</span>
-                  <Earth size={18} />
-                </Button>
-              </a>
-              <a href={project.github}>
-                <Button variant="outline" size="sm">
-                  <span className="mr-2">Github Code</span>
-                  <GitCommit size={18} />
-                </Button>
-              </a>
-            </div>
-          </div>
-        ))}
+    <>
+      <div className='mx-auto flex flex-col mt-8'>
+        <Project
+          project={projects[0]}
+          className='mx-auto mb-2'
+          hero
+        />
+        <hr className='my-10' />
+        <div className='space-y-6 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 divide-x-2'>
+          {projects.slice(1, 3).map((project) => (
+            <Project
+              project={project}
+              key={project.name}
+              className='p-6'
+            />
+          ))}
+        </div>
+        <hr className='my-10' />
+        <div className='space-y-6 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 divide-x-2'>
+          {projects.slice(3, 5).map((project) => (
+            <Project
+              project={project}
+              key={project.name}
+              className='p-6'
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+      <div className='mx-auto p-8 bg-slate-50 max-w-xl rounded-xl mt-24'>
+        <AuthorInfo />
+      </div>
+    </>
+  )
 }
