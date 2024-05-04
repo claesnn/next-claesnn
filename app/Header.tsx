@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { oswald } from "@/lib/fonts"
 import { usePathname } from "next/navigation"
 
@@ -90,12 +90,25 @@ export default function Header() {
     setMenuOpen(!menuOpen)
   }
 
+  const [scrollY, setScrollY] = useState(0)
+
+  function syncScroll() {
+    setScrollY(window.scrollY)
+  }
+
+  // Reduce the py-6 to py-3 on scroll
+  useEffect(() => {
+    window.addEventListener("scroll", syncScroll)
+    return () => window.removeEventListener("scroll", syncScroll)
+  }, [])
+
   return (
     <>
       <header className='shadow-sm w-full fixed top-0 bg-white opacity-95'>
         <div
           className={cn(
-            "flex justify-between px-4 place-items-center max-w-7xl mx-auto py-4",
+            "flex justify-between px-4 place-items-center max-w-7xl mx-auto transition-all ease-in-out",
+            scrollY > 10 ? "py-3" : "py-6",
           )}>
           <Link
             href='/'
