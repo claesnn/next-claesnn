@@ -57,7 +57,7 @@ function IndexHero() {
           Github
         </Link>
         <Link
-          href='https://github.com/claesnn'
+          href='https://linkedin.com/in/claesnn/'
           className='flex gap-2 place-items-center'>
           <Linkedin size={18} />
           LinkedIn
