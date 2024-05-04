@@ -74,7 +74,7 @@ function Project({
         {project.tags &&
           project.tags.map((tag) => (
             <Badge
-              variant='secondary'
+              variant='outline'
               key={tag}>
               {tag}
             </Badge>
