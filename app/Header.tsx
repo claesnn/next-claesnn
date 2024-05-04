@@ -90,20 +90,16 @@ export default function Header() {
     setMenuOpen(!menuOpen)
   }
 
-  const [scroll, setScroll] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
 
-  function checkScroll() {
-    if (window.scrollY > 10) {
-      setScroll(true)
-    } else {
-      setScroll(false)
-    }
+  function syncScroll() {
+    setScrollY(window.scrollY)
   }
 
   // Reduce the py-6 to py-3 on scroll
   useEffect(() => {
-    window.addEventListener("scroll", checkScroll)
-    return () => window.removeEventListener("scroll", checkScroll)
+    window.addEventListener("scroll", syncScroll)
+    return () => window.removeEventListener("scroll", syncScroll)
   })
 
   return (
@@ -112,7 +108,7 @@ export default function Header() {
         <div
           className={cn(
             "flex justify-between px-4 place-items-center max-w-7xl mx-auto transition-all ease-in-out",
-            scroll ? "py-3" : "py-6",
+            scrollY > 10 ? "py-3" : "py-6",
           )}>
           <Link
             href='/'
