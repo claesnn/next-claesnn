@@ -71,10 +71,11 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] }) {
           </Link>
         </div>
         <hr className='my-10' />
-        <div className='grid grid-cols-2 divide-x-2 text-center mb-32'>
+        <div className='grid divide-y sm:divide-y-0 sm:grid-cols-2 sm:divide-x-2 text-center mb-32'>
           {sortedBlogs.slice(1).map((blog, i) => (
             <Link
               key={blog.slug}
+              className='py-6'
               href={`/blogs/${blog.slug}`}>
               <div
                 key={blog.slug}

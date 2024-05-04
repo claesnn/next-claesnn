@@ -108,7 +108,7 @@ export default function Page() {
           hero
         />
         <hr className='my-10' />
-        <div className='space-y-6 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 divide-x-2'>
+        <div className='space-y-6 divide-y lg:divide-y-0 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 lg:divide-x'>
           {projects.slice(1, 3).map((project) => (
             <Project
               project={project}
@@ -118,7 +118,7 @@ export default function Page() {
           ))}
         </div>
         <hr className='my-10' />
-        <div className='space-y-6 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 divide-x-2'>
+        <div className='space-y-6 divide-y lg:divide-y-0 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-5 lg:divide-x'>
           {projects.slice(3, 5).map((project) => (
             <Project
               project={project}
