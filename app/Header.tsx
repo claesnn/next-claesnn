@@ -148,7 +148,11 @@ export default function Header() {
         </div>
       </header>
       {menuOpen && (
-        <nav className='w-full z-10 fixed top-[50px] flex'>
+        <nav
+          className={cn(
+            "w-full z-10 fixed flex",
+            scrollY > 10 ? "top-[50px]" : "top-[80px]",
+          )}>
           <div
             onClick={closeMenu}
             className=' bg-gray-900 h-screen flex-grow opacity-40'></div>
