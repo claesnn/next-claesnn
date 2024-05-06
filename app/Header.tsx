@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { oswald } from "@/lib/fonts";
 import { usePathname } from "next/navigation";
 
@@ -77,10 +77,14 @@ export default function Header() {
     setMenuOpen(!menuOpen);
   }
 
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
   return (
     <>
       <header className="shadow-sm w-full fixed top-0 bg-white opacity-[98%]">
-        <div className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto ">
+        <div className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto">
           <Link href="/">
             <h1
               className={cn("text-2xl", oswald.className)}
@@ -121,7 +125,6 @@ export default function Header() {
                 <Button
                   variant="link"
                   className="[&.active]:underline text-foreground text-lg "
-                  onClick={closeMenu}
                 >
                   {link.name}
                 </Button>
