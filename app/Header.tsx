@@ -86,12 +86,7 @@ export default function Header() {
       <header className="shadow-sm w-full fixed top-0 bg-white opacity-[98%]">
         <div className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto ">
           <Link href="/">
-            <h1
-              className={cn("text-2xl", oswald.className)}
-              onClick={closeMenu}
-            >
-              CLAESNN
-            </h1>
+            <h1 className={cn("text-2xl", oswald.className)}>CLAESNN</h1>
           </Link>
 
           <button onClick={toggleMenu} className="sm:hidden">
@@ -127,7 +122,6 @@ export default function Header() {
                 <Button
                   variant="link"
                   className="[&.active]:underline text-foreground text-lg "
-                  onClick={closeMenu}
                 >
                   {link.name}
                 </Button>
