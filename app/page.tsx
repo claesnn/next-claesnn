@@ -1,68 +1,80 @@
-import { cn } from "@/lib/utils";
-import { kurale } from "@/lib/fonts";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import IndexGame from "./IndexGame";
+import { cn } from "@/lib/utils"
+import { kurale } from "@/lib/fonts"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import IndexGame from "./IndexGame"
+import { Github, Newspaper, Linkedin, Car } from "lucide-react"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
-function IndexIntro() {
+function IndexHero() {
   return (
     <>
-      <h1
-        className={cn(
-          "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-10 text-center",
-          kurale.className
-        )}
-      >
-        Hi, I&apos;m Claes Nymand Nilsson
-      </h1>
-      <div className="max-w-3xl mx-auto mt-4">
-        <div className="flex">
+      <div className='mt-6 lg:mt-12 text-slate-500 text-sm'>
+        <div className='flex'>
           <img
-            src="/profile-pic-200.webp"
-            width="80"
-            height="80"
-            className="h-20 w-20 rounded-[4rem] mr-4"
-            alt="Claes Nymand Nilsson profile"
+            src='/profile-pic-200.webp'
+            width='40'
+            height='40'
+            className='h-10 w-10 rounded-[4rem] mr-4'
+            alt='Claes Nymand Nilsson profile'
           />
-          <p className="">
-            I am Danish biotech scientist with a thousand side-hobbies. I have a
-            passion for{" "}
-            <Link href="/photography">
-              <u>photography</u>
-            </Link>
-            ,{" "}
-            <Link href="/software">
-              <u>coding</u>
-            </Link>
-            , biotech and sports, amongst other things. I share my thoughts on
-            those hobbies and the world at large through my{" "}
-            <Link href="/blogs">
-              <u>blog</u>
-            </Link>
-            . Come follow along, when I dig into photo composition, python
-            package management, javascript framework-wars and coffee tricks with
-            diminishing returns.
-          </p>
-        </div>
-        <div className="flex min-w-full justify-center mt-4">
-          <Link href="/blogs">
-            <Button className="align-center px-8 py-4">
-              Straight to the blog!
-            </Button>
-          </Link>
+          <div>
+            <p>Claes Nymand Nilsson</p>
+            <p>Biotech Scientist and Full-Stack Developer</p>
+          </div>
         </div>
       </div>
+      <div className='flex mb-10 mt-3'>
+        <div>
+          <h1
+            className={cn(
+              "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5 ",
+              kurale.className,
+              "leading-[1.7] sm:leading-[1.7] md:leading-[1.7] lg:leading-[1.7] xl:leading-[1.7]",
+            )}>
+            Hey there! I&apos;m a{" "}
+            <mark className='bg-green-900 bg-opacity-15'>
+              biotech scientist
+            </mark>{" "}
+            and{" "}
+            <mark className='bg-blue-900 bg-opacity-15'>
+              software developer
+            </mark>{" "}
+            from Copenhagen
+          </h1>
+        </div>
+      </div>
+      <div className='flex mb-12 lg:mb-24 uppercase text-sm text-blue-900 gap-8'>
+        <Link
+          href='/blogs'
+          className='flex gap-2 place-items-center'>
+          <Newspaper size={18} />
+          Blogs
+        </Link>
+        <Link
+          href='https://github.com/claesnn'
+          className='flex gap-2 place-items-center'>
+          <Github size={18} />
+          Github
+        </Link>
+        <Link
+          href='https://linkedin.com/in/claesnn/'
+          className='flex gap-2 place-items-center'>
+          <Linkedin size={18} />
+          LinkedIn
+        </Link>
+      </div>
     </>
-  );
+  )
 }
 
 function IndexPhotos() {
   type Photo = {
-    id: number;
-    width: number;
-    height: number;
-    alt: string;
-  };
+    id: number
+    width: number
+    height: number
+    alt: string
+  }
 
   const photos: Photo[] = [
     {
@@ -101,13 +113,15 @@ function IndexPhotos() {
       height: 853,
       alt: "A photo of the oldest church in Iceland with hayballs on the field",
     },
-  ];
+  ]
 
   return (
     <>
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className='grid sm:grid-cols-2 gap-3'>
         {photos.map((photo, index) => (
-          <Link key={photo.id} href={`/photography/${photo.id}`}>
+          <Link
+            key={photo.id}
+            href={`/photography/${photo.id}`}>
             <img
               alt={photo.alt}
               width={photo.width}
@@ -118,72 +132,115 @@ function IndexPhotos() {
           </Link>
         ))}
       </div>
-      <div className="flex justify-center mt-3">
-        <Link href="/photography">
-          <Button variant="ghost" aria-label="More photographies">
+      <div className='flex justify-center mt-3'>
+        <Link href='/photography'>
+          <Button
+            variant='ghost'
+            aria-label='More photographies'>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-more-horizontal"
-            >
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="19" cy="12" r="1" />
-              <circle cx="5" cy="12" r="1" />
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              className='lucide lucide-more-horizontal'>
+              <circle
+                cx='12'
+                cy='12'
+                r='1'
+              />
+              <circle
+                cx='19'
+                cy='12'
+                r='1'
+              />
+              <circle
+                cx='5'
+                cy='12'
+                r='1'
+              />
             </svg>
           </Button>
         </Link>
       </div>
     </>
-  );
+  )
 }
 
 function IndexBiotech() {
-  const papers = ["https://pubmed.ncbi.nlm.nih.gov/26657798/"];
+  const papers = ["https://pubmed.ncbi.nlm.nih.gov/26657798/"]
 
   return (
     <div>
       {papers.map((paper, index) => (
-        <Link href={paper} key={paper}>
+        <Link
+          href={paper}
+          key={paper}>
           <img
             src={`/papers/${index}.png`}
-            className="mx-auto"
-            loading="lazy"
-            alt="A paper on biotech"
+            className='mx-auto'
+            loading='lazy'
+            alt='A paper on biotech'
           />
         </Link>
       ))}
     </div>
-  );
+  )
 }
 
 function HeaderLink({ href, text }: { href: string; text: string }) {
   return (
     <>
-      <hr className="my-8" />
       <Link href={href}>
-        <h2 className={cn("text-4xl mb-4", kurale.className)}>{text}</h2>
+        <h2 className={cn("text-4xl", kurale.className)}>{text}</h2>
       </Link>
     </>
-  );
+  )
 }
 
 export default function Home() {
   return (
     <>
-      <IndexIntro />
-      <HeaderLink href="photography" text="Photography" />
-      <IndexPhotos />
-      <HeaderLink href="software" text="Software" />
-      <IndexGame />
-      <HeaderLink href="biotech" text="Biotech" />
-      <IndexBiotech />
+      <IndexHero />
+
+      <Card className='mb-10'>
+        <CardHeader>
+          <HeaderLink
+            href='/software'
+            text='Software'
+          />
+        </CardHeader>
+        <CardContent>
+          <IndexGame />
+        </CardContent>
+      </Card>
+      <Card className='mb-10'>
+        <CardHeader>
+          <HeaderLink
+            href='/biotech'
+            text='Biotech'
+          />
+        </CardHeader>
+        <CardContent>
+          <IndexBiotech />
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <HeaderLink
+            href='/photography'
+            text='Photography'
+          />
+        </CardHeader>
+        <CardContent>
+          <IndexPhotos />
+        </CardContent>
+      </Card>
     </>
-  );
+  )
 }
