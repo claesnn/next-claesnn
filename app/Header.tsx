@@ -77,15 +77,21 @@ export default function Header() {
     setMenuOpen(!menuOpen);
   }
 
+  function checkCloseMenu(url: string) {
+    if (menuOpen && url === pathname) {
+      closeMenu();
+    }
+  }
+
   useEffect(() => {
     closeMenu();
   }, [pathname]);
 
   return (
     <>
-      <header className="shadow-sm w-full fixed top-0 bg-white opacity-[98%]">
+      <header className="shadow-sm w-full fixed top-0 bg-white opacity-95">
         <div className="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto ">
-          <Link href="/">
+          <Link href="/" onClick={() => checkCloseMenu("/")}>
             <h1 className={cn("text-2xl", oswald.className)}>CLAESNN</h1>
           </Link>
 
@@ -121,7 +127,10 @@ export default function Header() {
               <Link href={link.route} key={link.name}>
                 <Button
                   variant="link"
-                  className="[&.active]:underline text-foreground text-lg "
+                  className={cn("text-foreground text-lg", {
+                    underline: pathname.startsWith(link.route),
+                  })}
+                  onClick={() => checkCloseMenu(link.route)}
                 >
                   {link.name}
                 </Button>
