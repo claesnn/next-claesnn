@@ -126,7 +126,7 @@ function IndexPhotos() {
               alt={photo.alt}
               width={photo.width}
               height={photo.height}
-              loading={index < 2 ? "eager" : "lazy"}
+              loading='lazy'
               srcSet={`/images/${photo.id}-200.webp 200w, /images/${photo.id}-420.webp 420w, /images/${photo.id}-420.webp 640w, /images/${photo.id}-640.webp 960w,/images/${photo.id}-640.webp 1280w`}
             />
           </Link>
@@ -182,8 +182,9 @@ function IndexBiotech() {
           key={paper}>
           <img
             src={`/papers/${index}.png`}
+            width={790}
+            height={654}
             className='mx-auto'
-            loading='lazy'
             alt='A paper on biotech'
           />
         </Link>
