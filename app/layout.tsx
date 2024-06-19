@@ -6,7 +6,10 @@ import Header from "./Header"
 import { fontSans } from "@/lib/fonts"
 
 export const metadata: Metadata = {
-  title: "Photography, Software, and Coffe | Claes Nymand Nilsson",
+  title: {
+    template: "%s | Claes Nymand Nilsson",
+    default: "Photography, Software, and Coffee",
+  },
   description: "Photography, Software, and Coffee by Claes Nymand Nilsson",
 }
 

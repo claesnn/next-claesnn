@@ -3,6 +3,12 @@ import { Badge } from "@/components/ui/badge"
 import { kurale } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Earth, GitCommit } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Software",
+  description: "Software projects by Claes Nymand Nilsson",
+}
 
 type SoftwareProject = {
   name: string
