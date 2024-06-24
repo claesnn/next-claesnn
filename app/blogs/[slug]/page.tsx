@@ -5,11 +5,13 @@ import { kurale } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { MDXRemote } from "next-mdx-remote/rsc"
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}) {
+type generateMetadataProps = {
+  params: {
+    slug: string
+  }
+}
+
+export async function generateMetadata({ params }: generateMetadataProps) {
   const { slug } = params
   const blog = getBlogPosts().find((blog) => blog.slug === slug)
 
@@ -30,15 +32,13 @@ export function generateStaticParams() {
   }))
 }
 
-function BlogHeader({
-  title,
-  summary,
-  publishedAt,
-}: {
+type BlogHeaderProps = {
   title: string
   summary: string
   publishedAt: string
-}) {
+}
+
+function BlogHeader({ title, summary, publishedAt }: BlogHeaderProps) {
   return (
     <div className='text-center mb-12'>
       <p className='text-xs uppercase text-slate-600 mb-2'>
@@ -56,7 +56,13 @@ function BlogHeader({
   )
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
+type PageProps = {
+  params: {
+    slug: string
+  }
+}
+
+export default function Page({ params }: PageProps) {
   let { slug } = params
   let blog = getBlogPosts().find((blog) => blog.slug === slug)
   if (!blog) {
