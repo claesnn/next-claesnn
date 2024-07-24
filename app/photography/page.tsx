@@ -27,7 +27,7 @@ export default function Photography() {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
       {imageArray.map((_, i) => (
-        <ImageLink key={i} i={i + 1} />
+        <ImageLink key={i} i={i} />
       ))}
     </div>
   );
