@@ -100,42 +100,46 @@ function BurgerMenu({
 
 function Sidebar({
   closeMenu,
-  checkCloseMenu,
-  links,
-  pathname,
-  menuOpen,
+  children,
 }: {
   closeMenu: () => void;
-  checkCloseMenu: (url: string) => void;
-  links: { name: string; route: string }[];
-  pathname: string;
-  menuOpen: boolean;
+  children: React.ReactNode;
 }) {
   return (
-    menuOpen && (
-      <nav className="w-full z-10 fixed top-[50px] flex">
-        <div
-          onClick={closeMenu}
-          className=" bg-gray-900 h-screen flex-grow opacity-40"
-        ></div>
-        <aside className="w-[20rem] bg-white h-screen p-3 flex flex-col">
-          {links.map((link) => (
-            <Link href={link.route} key={link.name}>
-              <Button
-                variant="link"
-                className={cn("text-foreground text-lg", {
-                  underline: pathname.startsWith(link.route),
-                })}
-                onClick={() => checkCloseMenu(link.route)}
-              >
-                {link.name}
-              </Button>
-            </Link>
-          ))}
-        </aside>
-      </nav>
-    )
+    <nav className="w-full z-10 fixed top-[50px] flex">
+      <div
+        onClick={closeMenu}
+        className=" bg-gray-900 h-screen flex-grow opacity-40"
+      ></div>
+      <aside className="w-[20rem] bg-white h-screen p-3 flex flex-col">
+        {children}
+      </aside>
+    </nav>
   );
+}
+
+function SidebarLinks({
+  links,
+  checkCloseMenu,
+  pathname,
+}: {
+  links: { name: string; route: string }[];
+  checkCloseMenu: (url: string) => void;
+  pathname: string;
+}) {
+  return links.map((link) => (
+    <Link href={link.route} key={link.name}>
+      <Button
+        variant="link"
+        className={cn("text-foreground text-lg", {
+          underline: pathname.startsWith(link.route),
+        })}
+        onClick={() => checkCloseMenu(link.route)}
+      >
+        {link.name}
+      </Button>
+    </Link>
+  ));
 }
 
 function MainNav({
@@ -195,13 +199,15 @@ export default function Header() {
           <MainNav links={links} pathname={pathname} />
         </div>
       </header>
-      <Sidebar
-        closeMenu={closeMenu}
-        checkCloseMenu={checkCloseMenu}
-        menuOpen={menuOpen}
-        links={links}
-        pathname={pathname}
-      />
+      {menuOpen && (
+        <Sidebar closeMenu={closeMenu}>
+          <SidebarLinks
+            links={links}
+            checkCloseMenu={checkCloseMenu}
+            pathname={pathname}
+          />
+        </Sidebar>
+      )}
     </>
   );
 }

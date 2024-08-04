@@ -179,11 +179,9 @@ function IndexBiotech() {
 
 function HeaderLink({ href, text }: { href: string; text: string }) {
   return (
-    <>
-      <Link href={href}>
-        <h2 className={cn("text-4xl", kurale.className)}>{text}</h2>
-      </Link>
-    </>
+    <Link href={href}>
+      <h2 className={cn("text-4xl", kurale.className)}>{text}</h2>
+    </Link>
   );
 }
 
