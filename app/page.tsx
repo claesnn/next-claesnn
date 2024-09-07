@@ -158,7 +158,7 @@ function IndexBiotech() {
       {papers.map((paper, index) => (
         <Link href={paper} key={paper}>
           <img
-            src={`/papers/${index}.png`}
+            src={`/papers/${index}.webp`}
             width={790}
             height={654}
             className="mx-auto"

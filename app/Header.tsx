@@ -76,7 +76,7 @@ function Logo({
       onClick={() => checkCloseMenu("/")}
       className="flex place-items-center"
     >
-      <img src="/logo.jpg" alt="logo" className="w-8 h-9 mr-3" />
+      <img src="/logo.webp" alt="logo" className="w-8 h-9 mr-3" />
       <h1 className={cn("text-2xl", oswald.className)} onClick={closeMenu}>
         CLAESNN
       </h1>
