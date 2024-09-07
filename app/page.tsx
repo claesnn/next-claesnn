@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import IndexGame from "./IndexGame";
@@ -25,7 +24,7 @@ function IndexHero() {
       </div>
       <div className="flex mb-10 mt-3">
         <div>
-          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5 leading-[1.7] sm:leading-[1.7] md:leading-[1.7] lg:leading-[1.7] xl:leading-[1.7]">
+          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5 leading-[1.3] sm:leading-[1.3] md:leading-[1.3] lg:leading-[1.3] xl:leading-[1.3]">
             Hey there! I&apos;m a{" "}
             <mark className="bg-green-900 bg-opacity-15">
               biotech scientist
