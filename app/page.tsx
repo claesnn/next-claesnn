@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { kurale } from "@/lib/fonts";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import IndexGame from "./IndexGame";
@@ -26,13 +25,7 @@ function IndexHero() {
       </div>
       <div className="flex mb-10 mt-3">
         <div>
-          <h1
-            className={cn(
-              "text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5 ",
-              kurale.className,
-              "leading-[1.7] sm:leading-[1.7] md:leading-[1.7] lg:leading-[1.7] xl:leading-[1.7]"
-            )}
-          >
+          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5 leading-[1.7] sm:leading-[1.7] md:leading-[1.7] lg:leading-[1.7] xl:leading-[1.7]">
             Hey there! I&apos;m a{" "}
             <mark className="bg-green-900 bg-opacity-15">
               biotech scientist
@@ -180,7 +173,7 @@ function IndexBiotech() {
 function HeaderLink({ href, text }: { href: string; text: string }) {
   return (
     <Link href={href}>
-      <h2 className={cn("text-4xl", kurale.className)}>{text}</h2>
+      <h2 className="text-4xl font-bold">{text}</h2>
     </Link>
   );
 }

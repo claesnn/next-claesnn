@@ -3,8 +3,6 @@
 import AuthorInfo from "@/components/AuthorInfo";
 import { Button } from "@/components/ui/button";
 import { BlogPost } from "@/lib/blogs";
-import { kurale } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
@@ -24,9 +22,7 @@ function LeadingBlogPost({ blog }: { blog: BlogPost }) {
     <div className="text-center mb-20">
       <Link href={`/blogs/${blog.slug}`}>
         <p className="text-xs uppercase text-slate-600">{publishedAt}</p>
-        <h2 className={cn("text-3xl mb-1", kurale.className)}>
-          {blog.metadata.title}
-        </h2>
+        <h2 className="text-3xl mb-1 font-bold">{blog.metadata.title}</h2>
         <p className="text-slate-700">{blog.metadata.summary}</p>
       </Link>
     </div>
@@ -44,9 +40,7 @@ function RemainingBlogPosts({ blogs }: { blogs: BlogPost[] }) {
         <Link key={blog.slug} href={`/blogs/${blog.slug}`}>
           <div className="py-6">
             <p className="text-xs uppercase text-slate-600">{publishedAt[i]}</p>
-            <h2 className={cn("text-3xl mb-1", kurale.className)}>
-              {blog.metadata.title}
-            </h2>
+            <h2 className="text-3xl mb-1 font-bold">{blog.metadata.title}</h2>
             <p className="text-slate-700">{blog.metadata.summary}</p>
           </div>
         </Link>

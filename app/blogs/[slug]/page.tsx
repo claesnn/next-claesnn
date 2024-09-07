@@ -1,8 +1,6 @@
 import AuthorInfo from "@/components/AuthorInfo";
 import MyButton from "@/components/MyButton";
 import { getBlogPosts } from "@/lib/blogs";
-import { kurale } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
 type generateMetadataProps = {
@@ -48,9 +46,7 @@ function BlogHeader({ title, summary, publishedAt }: BlogHeaderProps) {
   return (
     <div className="text-center mb-12">
       <p className="text-xs uppercase text-slate-600 mb-2">{formattedDate}</p>
-      <h2 className={cn("text-4xl lg:text-6xl mb-4", kurale.className)}>
-        {title}
-      </h2>
+      <h2 className="text-4xl lg:text-6xl mb-4 font-bold">{title}</h2>
       <p className="text-slate-600 max-w-xl mx-auto">{summary}</p>
     </div>
   );
