@@ -4,6 +4,7 @@ import IndexGame from "./IndexGame";
 import { Github, Newspaper, Linkedin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import PaperCarousel from "./PaperCarousel";
 
 function IndexHero() {
   return (
@@ -150,70 +151,8 @@ function IndexPhotos() {
   );
 }
 
-type Paper = {
-  title: string;
-  description: string;
-  tags: string[];
-  url: string;
-  image: string;
-};
-
 function IndexBiotech() {
-  const papers: Paper[] = [
-    {
-      title:
-        "Versatile microscale screening platform for improving recombinant protein production in Chinese hamster ovary cells",
-      description:
-        "In this project, we developed a screening platform in 96-deep well plates. The platform enabled semi-automated cell counting, high-throughput protein secretion evaluation using split-GFP and the plate format enabled fast transfection and screening.<br /><br />My contribution to the project included cloning of plasmids encoding genes related to protein production and secretion. Evaluating the system for testing improvement of protein production and secretion for difficult-to-express proteins.",
-      tags: [
-        "Split-GFP",
-        "Celigo",
-        "Deep Well Plates",
-        "Duetz",
-        "Transient transfection",
-        "CHO",
-        "Protein Secretion",
-      ],
-      url: "https://pubmed.ncbi.nlm.nih.gov/26657798/",
-      image: "/papers/0.webp",
-    },
-  ];
-
-  return (
-    <div className="bg-gray-50 py-10 px-2">
-      <div className="max-w-lg mx-auto">
-        {papers.map((paper, index) => (
-          <Link href={paper.url} key={paper.title}>
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>{paper.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <img
-                  src={paper.image}
-                  width="160"
-                  height="160"
-                  className="rounded-xl w-40 h-40 float-left mr-4"
-                  alt={paper.title}
-                />
-                <p
-                  className="text-slate-600 prose-sm"
-                  dangerouslySetInnerHTML={{ __html: paper.description }}
-                />
-                <div className="flex flex-row flex-wrap gap-2 mt-4">
-                  {paper.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+  return <PaperCarousel />;
 }
 
 function HeaderLink({ href, text }: { href: string; text: string }) {
