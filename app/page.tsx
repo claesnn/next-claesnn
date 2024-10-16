@@ -5,6 +5,7 @@ import { Github, Newspaper, Linkedin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import PaperCarousel from "./PaperCarousel";
+import { Suspense } from "react";
 
 function IndexHero() {
   return (
@@ -152,7 +153,11 @@ function IndexPhotos() {
 }
 
 function IndexBiotech() {
-  return <PaperCarousel />;
+  return (
+    <Suspense>
+      <PaperCarousel />
+    </Suspense>
+  );
 }
 
 function HeaderLink({ href, text }: { href: string; text: string }) {
