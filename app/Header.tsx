@@ -127,14 +127,19 @@ function SidebarLinks({
   checkCloseMenu: (url: string) => void;
   pathname: string;
 }) {
-  return links.map((link) => (
+  const linksWithOnClick = links.map((link) => ({
+    ...link,
+    onClick: () => checkCloseMenu(link.route),
+  }));
+
+  return linksWithOnClick.map((link) => (
     <Link href={link.route} key={link.name}>
       <Button
         variant="link"
         className={cn("text-foreground text-lg", {
           underline: pathname.startsWith(link.route),
         })}
-        onClick={() => checkCloseMenu(link.route)}
+        onClick={link.onClick}
       >
         {link.name}
       </Button>
