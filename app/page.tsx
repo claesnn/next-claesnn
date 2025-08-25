@@ -10,54 +10,63 @@ import { Suspense } from "react";
 function IndexHero() {
   return (
     <>
-      <div className="mt-6 lg:mt-12 text-slate-500 text-sm">
-        <div className="flex">
-          <img
-            src="/profile-pic-200.webp"
-            width="40"
-            height="40"
-            className="h-10 w-10 rounded-[4rem] mr-4"
-            alt="Claes Nymand Nilsson profile"
-          />
+      <div className="mb-8 lg:mb-12">
+        <div className="flex items-center gap-4 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl border border-border/20">
+          <div className="relative">
+            <img
+              src="/profile-pic-200.webp"
+              width="60"
+              height="60"
+              className="h-15 w-15 rounded-full ring-4 ring-white shadow-lg"
+              alt="Claes Nymand Nilsson profile"
+            />
+            <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-2 border-white"></div>
+          </div>
           <div>
-            <p>Claes Nymand Nilsson</p>
-            <p>Biotech Scientist and Full-Stack Developer</p>
+            <h2 className="font-semibold text-lg text-gray-900">Claes Nymand Nilsson</h2>
+            <p className="text-gray-600 text-sm">Biotech Scientist & Full-Stack Developer</p>
+            <p className="text-gray-500 text-xs mt-1">Copenhagen, Denmark</p>
           </div>
         </div>
       </div>
-      <div className="flex mb-10 mt-3">
-        <div>
-          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-5 leading-[1.3] sm:leading-[1.3] md:leading-[1.3] lg:leading-[1.3] xl:leading-[1.3]">
-            Hey there! I&apos;m a{" "}
-            <mark className="bg-green-900 bg-opacity-15">
+      <div className="mb-12">
+        <div className="space-y-6">
+          <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
+            <span className="block text-gray-900">Hey there!</span>
+            <span className="block mt-2">I&apos;m a{" "}
+            <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
               biotech scientist
-            </mark>{" "}
+            </span>{" "}
             and{" "}
-            <mark className="bg-blue-900 bg-opacity-15">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
               software developer
-            </mark>{" "}
-            from Copenhagen
+            </span></span>
+            <span className="block mt-2 text-gray-700">from Copenhagen</span>
           </h1>
+          <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
+            I blend scientific rigor with creative problem-solving to build impactful solutions 
+            in biotechnology and software development.
+          </p>
         </div>
       </div>
-      <div className="flex mb-12 lg:mb-24 uppercase text-sm text-blue-900 gap-8">
-        <Link href="/blogs" className="flex gap-2 place-items-center">
+      <div className="flex flex-wrap gap-4 mb-16 lg:mb-24">
+        <Link href="/blogs" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200">
           <Newspaper size={18} />
-          Blogs
+          <span className="font-medium">Read my blogs</span>
         </Link>
         <Link
           href="https://github.com/claesnn"
-          className="flex gap-2 place-items-center"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg transition-colors duration-200 border border-gray-200"
         >
           <Github size={18} />
-          Github
+          <span className="font-medium">View my code</span>
         </Link>
         <Link
           href="https://linkedin.com/in/claesnn/"
-          className="flex gap-2 place-items-center"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200"
         >
           <Linkedin size={18} />
-          LinkedIn
+          <span className="font-medium">Connect with me</span>
         </Link>
       </div>
     </>
@@ -113,7 +122,7 @@ function IndexPhotos() {
 
   return (
     <>
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className="grid sm:grid-cols-2 gap-4 lg:gap-6">
         {photos.map((photo, index) => (
           <Link key={photo.id} href={`/photography/${photo.id}`}>
             <img
@@ -121,29 +130,30 @@ function IndexPhotos() {
               width={photo.width}
               height={photo.height}
               loading="lazy"
+              className="rounded-xl hover:scale-105 transition-transform duration-300 shadow-md"
               srcSet={`/images/${photo.id}-200.webp 200w, /images/${photo.id}-420.webp 420w, /images/${photo.id}-420.webp 640w, /images/${photo.id}-640.webp 960w,/images/${photo.id}-640.webp 1280w`}
             />
           </Link>
         ))}
       </div>
-      <div className="flex justify-center mt-3">
+      <div className="flex justify-center mt-6">
         <Link href="/photography">
-          <Button variant="ghost" aria-label="More photographies">
+          <Button variant="ghost" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50" aria-label="More photographies">
+            <span className="mr-2">View all photos</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="lucide lucide-more-horizontal"
+              className="lucide lucide-arrow-right"
             >
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="19" cy="12" r="1" />
-              <circle cx="5" cy="12" r="1" />
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
             </svg>
           </Button>
         </Link>
@@ -173,31 +183,43 @@ export default function Home() {
     <>
       <IndexHero />
 
-      <Card className="mb-10">
-        <CardHeader>
-          <HeaderLink href="/software" text="Software" />
-        </CardHeader>
-        <CardContent>
-          <IndexGame />
-        </CardContent>
-      </Card>
-      <Card className="mb-10">
-        <CardHeader>
-          <HeaderLink href="/biotech" text="Biotech" />
-        </CardHeader>
-        <CardContent>
-          <IndexBiotech />
-        </CardContent>
-      </Card>
+      <div className="space-y-12">
+        <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
+          <CardHeader className="pb-6">
+            <div className="flex items-center gap-3">
+              <div className="h-2 w-2 bg-blue-500 rounded-full"></div>
+              <HeaderLink href="/software" text="Software" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <IndexGame />
+          </CardContent>
+        </Card>
+        
+        <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50">
+          <CardHeader className="pb-6">
+            <div className="flex items-center gap-3">
+              <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+              <HeaderLink href="/biotech" text="Biotech" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <IndexBiotech />
+          </CardContent>
+        </Card>
 
-      <Card>
-        <CardHeader>
-          <HeaderLink href="/photography" text="Photography" />
-        </CardHeader>
-        <CardContent>
-          <IndexPhotos />
-        </CardContent>
-      </Card>
+        <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50">
+          <CardHeader className="pb-6">
+            <div className="flex items-center gap-3">
+              <div className="h-2 w-2 bg-purple-500 rounded-full"></div>
+              <HeaderLink href="/photography" text="Photography" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <IndexPhotos />
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 }

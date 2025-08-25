@@ -220,7 +220,7 @@ export default function Header() {
 
   return (
     <>
-      <header className='shadow-sm w-full fixed top-0 bg-white opacity-95'>
+      <header className='border-b border-border/40 shadow-sm w-full fixed top-0 bg-white/95 backdrop-blur-sm z-50'>
         <div className='flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto '>
           <Logo
             checkCloseMenu={checkCloseMenu}
