@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+import { Minus, Plus, Loader2 } from "lucide-react";
 
 interface Counter {
   id: number;
@@ -94,17 +96,49 @@ export default function CounterComponent() {
     decrementMutation.mutate();
   };
 
+  // Format date helper
+  const formatLastUpdated = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInMinutes = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60)
+    );
+
+    if (diffInMinutes < 1) {
+      return "Just now";
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes} minute${diffInMinutes !== 1 ? "s" : ""} ago`;
+    } else {
+      return date.toLocaleString();
+    }
+  };
+
+  // Skeleton component to prevent layout shift
+  const CounterSkeleton = () => (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <div className="h-6 bg-gray-200 rounded animate-pulse w-32 mx-auto"></div>
+        <div className="h-12 bg-gray-200 rounded animate-pulse w-16 mx-auto"></div>
+      </div>
+      <div className="flex gap-3 justify-center">
+        <div className="h-10 bg-gray-200 rounded animate-pulse w-24"></div>
+        <div className="h-10 bg-gray-200 rounded animate-pulse w-24"></div>
+      </div>
+      <div className="h-4 bg-gray-200 rounded animate-pulse w-40 mx-auto"></div>
+    </div>
+  );
+
   if (isLoading) {
     return (
-      <div style={{ margin: "2rem 0", textAlign: "center" }}>
-        <div>Loading counter...</div>
+      <div className="py-8 text-center">
+        <CounterSkeleton />
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div style={{ margin: "2rem 0", color: "red", textAlign: "center" }}>
+      <div className="py-8 text-center text-red-600">
         <div>
           Error:{" "}
           {error instanceof Error ? error.message : "Failed to load counter"}
@@ -114,68 +148,79 @@ export default function CounterComponent() {
   }
 
   return (
-    <div style={{ margin: "2rem 0", textAlign: "center" }}>
-      <div style={{ marginBottom: "1rem" }}>
-        <h3 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-          Counter: {counter?.name || `Counter ${counterId}`}
+    <div className="py-8 text-center space-y-6">
+      <div className="space-y-2">
+        <h3 className="text-xl font-semibold text-gray-800">
+          {counter?.name || `Counter ${counterId}`}
         </h3>
-        <div style={{ fontSize: "2rem", fontWeight: "bold", margin: "1rem 0" }}>
+        <div className="text-4xl font-bold text-gray-900 min-h-[3rem] flex items-center justify-center">
           {counter?.count ?? 0}
         </div>
       </div>
 
-      <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
-        <button
+      <div className="flex gap-3 justify-center">
+        <Button
           onClick={handleDecrement}
           disabled={decrementMutation.isPending}
-          style={{
-            padding: "0.75rem 1.5rem",
-            fontSize: "1.1rem",
-            backgroundColor: "#ef4444",
-            color: "white",
-            border: "none",
-            borderRadius: "0.5rem",
-            cursor: decrementMutation.isPending ? "not-allowed" : "pointer",
-            opacity: decrementMutation.isPending ? 0.6 : 1,
-          }}
+          variant="destructive"
+          size="lg"
+          className="min-w-[120px]"
         >
-          {decrementMutation.isPending ? "−..." : "− Decrease"}
-        </button>
+          {decrementMutation.isPending ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Loading
+            </>
+          ) : (
+            <>
+              <Minus className="w-4 h-4 mr-2" />
+              Decrease
+            </>
+          )}
+        </Button>
 
-        <button
+        <Button
           onClick={handleIncrement}
           disabled={incrementMutation.isPending}
-          style={{
-            padding: "0.75rem 1.5rem",
-            fontSize: "1.1rem",
-            backgroundColor: "#22c55e",
-            color: "white",
-            border: "none",
-            borderRadius: "0.5rem",
-            cursor: incrementMutation.isPending ? "not-allowed" : "pointer",
-            opacity: incrementMutation.isPending ? 0.6 : 1,
-          }}
+          variant="default"
+          size="lg"
+          className="min-w-[120px] bg-green-600 hover:bg-green-700"
         >
-          {incrementMutation.isPending ? "+..." : "+ Increase"}
-        </button>
+          {incrementMutation.isPending ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Loading
+            </>
+          ) : (
+            <>
+              <Plus className="w-4 h-4 mr-2" />
+              Increase
+            </>
+          )}
+        </Button>
       </div>
 
       {(incrementMutation.isError || decrementMutation.isError) && (
-        <div style={{ marginTop: "1rem", color: "red" }}>
-          <div>
-            {incrementMutation.error instanceof Error &&
-              incrementMutation.error.message}
-            {decrementMutation.error instanceof Error &&
-              decrementMutation.error.message}
-          </div>
+        <div className="text-red-600 text-sm">
+          {incrementMutation.error instanceof Error &&
+            incrementMutation.error.message}
+          {decrementMutation.error instanceof Error &&
+            decrementMutation.error.message}
         </div>
       )}
 
-      <div style={{ marginTop: "1rem", fontSize: "0.9rem", opacity: 0.7 }}>
-        Last updated:{" "}
-        {counter?.updated_at
-          ? new Date(counter.updated_at).toLocaleTimeString()
-          : "N/A"}
+      <div className="text-sm text-gray-500 min-h-[1.25rem]">
+        {counter?.updated_at ? (
+          <>
+            Last updated: {formatLastUpdated(counter.updated_at)}
+            <br />
+            <span className="text-xs opacity-75">
+              {new Date(counter.updated_at).toLocaleString()}
+            </span>
+          </>
+        ) : (
+          "No updates yet"
+        )}
       </div>
     </div>
   );
