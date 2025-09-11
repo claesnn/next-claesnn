@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import PaperCarousel from "./PaperCarousel";
 import { Suspense } from "react";
+import ApiHealthButton from "@/components/ApiHealthButton";
 
 function IndexHero() {
   return (
@@ -23,8 +24,12 @@ function IndexHero() {
             <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-2 border-white"></div>
           </div>
           <div>
-            <h2 className="font-semibold text-lg text-gray-900">Claes Nymand Nilsson</h2>
-            <p className="text-gray-600 text-sm">Biotech Scientist & Full-Stack Developer</p>
+            <h2 className="font-semibold text-lg text-gray-900">
+              Claes Nymand Nilsson
+            </h2>
+            <p className="text-gray-600 text-sm">
+              Biotech Scientist & Full-Stack Developer
+            </p>
             <p className="text-gray-500 text-xs mt-1">Copenhagen, Denmark</p>
           </div>
         </div>
@@ -33,24 +38,29 @@ function IndexHero() {
         <div className="space-y-6">
           <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
             <span className="block text-gray-900">Hey there!</span>
-            <span className="block mt-2">I&apos;m a{" "}
-            <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-              biotech scientist
-            </span>{" "}
-            and{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-              software developer
-            </span></span>
+            <span className="block mt-2">
+              I&apos;m a{" "}
+              <span className="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+                biotech scientist
+              </span>{" "}
+              and{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                software developer
+              </span>
+            </span>
             <span className="block mt-2 text-gray-700">from Copenhagen</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
-            I blend scientific rigor with creative problem-solving to build impactful solutions 
-            in biotechnology and software development.
+            I blend scientific rigor with creative problem-solving to build
+            impactful solutions in biotechnology and software development.
           </p>
         </div>
       </div>
       <div className="flex flex-wrap gap-4 mb-16 lg:mb-24">
-        <Link href="/blogs" className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200">
+        <Link
+          href="/blogs"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200"
+        >
           <Newspaper size={18} />
           <span className="font-medium">Read my blogs</span>
         </Link>
@@ -138,7 +148,11 @@ function IndexPhotos() {
       </div>
       <div className="flex justify-center mt-6">
         <Link href="/photography">
-          <Button variant="ghost" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50" aria-label="More photographies">
+          <Button
+            variant="ghost"
+            className="text-purple-600 hover:text-purple-700 hover:bg-purple-50"
+            aria-label="More photographies"
+          >
             <span className="mr-2">View all photos</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -192,10 +206,10 @@ export default function Home() {
             </div>
           </CardHeader>
           <CardContent>
-            <IndexGame />
+            <ApiHealthButton />
           </CardContent>
         </Card>
-        
+
         <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50">
           <CardHeader className="pb-6">
             <div className="flex items-center gap-3">
