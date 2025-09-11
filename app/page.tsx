@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import PaperCarousel from "./PaperCarousel";
 import { Suspense } from "react";
 import ApiHealthButton from "@/components/ApiHealthButton";
+import CounterComponent from "@/components/CounterComponent";
 
 function IndexHero() {
   return (
@@ -207,6 +208,10 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <ApiHealthButton />
+            <div className="mt-8 pt-8 border-t border-gray-200">
+              <h4 className="text-lg font-semibold mb-4">Counter Demo</h4>
+              <CounterComponent />
+            </div>
           </CardContent>
         </Card>
 
