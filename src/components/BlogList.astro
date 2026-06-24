@@ -1,0 +1,81 @@
+---
+import AuthorInfo from "./AuthorInfo.astro";
+import type { BlogPost } from "../../lib/blogs";
+
+type Props = {
+  blogs: BlogPost[];
+};
+
+const { blogs } = Astro.props;
+const sortedBlogs = [...blogs].sort(
+  (a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
+);
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<button class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3" type="button" data-blog-sort>
+  <span class="mr-2">Sort</span>
+  <span data-blog-sort-icon>↓</span>
+</button>
+
+<div class="w-full mb-16 mt-12" data-blog-list>
+  {sortedBlogs.map((blog, index) => (
+    <a
+      href={`/blogs/${blog.slug}`}
+      data-blog-item
+      data-published={blog.metadata.publishedAt}
+      class:list={[
+        index === 0 ? "block text-center mb-20" : "block text-center py-6",
+        index > 0 && "remaining-blog",
+      ]}
+    >
+      <p class="text-xs uppercase text-slate-600">{formatDate(blog.metadata.publishedAt)}</p>
+      <h2 class={index === 0 ? "text-3xl mb-1 font-bold" : "text-3xl mb-1 font-bold"}>{blog.metadata.title}</h2>
+      <p class="text-slate-700">{blog.metadata.summary}</p>
+    </a>
+  ))}
+</div>
+
+<div class="mx-auto p-8 bg-slate-50 max-w-xl rounded-xl">
+  <AuthorInfo />
+</div>
+
+<script>
+  const sortButton = document.querySelector("[data-blog-sort]");
+  const sortIcon = document.querySelector("[data-blog-sort-icon]");
+  const list = document.querySelector("[data-blog-list]");
+  let ascending = new URLSearchParams(window.location.search).has("sortAsc");
+
+  function render() {
+    const items = Array.from(document.querySelectorAll("[data-blog-item]"));
+    items.sort((a, b) => {
+      const aTime = new Date(a.getAttribute("data-published") || "").getTime();
+      const bTime = new Date(b.getAttribute("data-published") || "").getTime();
+      return ascending ? aTime - bTime : bTime - aTime;
+    });
+    items.forEach((item, index) => {
+      item.className = index === 0 ? "block text-center mb-20" : "block text-center py-6";
+      list?.appendChild(item);
+    });
+    if (sortIcon) sortIcon.textContent = ascending ? "↑" : "↓";
+    const params = new URLSearchParams(window.location.search);
+    if (ascending) params.set("sortAsc", "");
+    else params.delete("sortAsc");
+    const query = params.toString();
+    window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}`);
+  }
+
+  sortButton?.addEventListener("click", () => {
+    ascending = !ascending;
+    render();
+  });
+
+  render();
+</script>

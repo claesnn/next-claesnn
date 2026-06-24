@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PhotoViewer from "../../components/PhotoViewer.astro";
+
+export function getStaticPaths() {
+  return Array.from({ length: 54 }, (_, i) => ({
+    params: { slug: i.toString() },
+    props: { imageIndex: i },
+  }));
+}
+
+const { imageIndex } = Astro.props;
+---
+
+<BaseLayout title={`Photography ${imageIndex}`} description="Photography by Claes Nymand Nilsson">
+  <PhotoViewer initialImage={imageIndex} />
+</BaseLayout>

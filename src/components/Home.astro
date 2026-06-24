@@ -1,0 +1,104 @@
+---
+import PaperCarousel from "./PaperCarousel.astro";
+
+const photos = [
+  { id: 24, width: 1280, height: 853, alt: "A photo of a rock in the ocean in Iceland" },
+  { id: 45, width: 1280, height: 853, alt: "A photo of a road with flowers on each side leading to a mountain in Iceland" },
+  { id: 2, width: 1280, height: 1920, alt: "A photo of the adventure tower in south zealand" },
+  { id: 7, width: 1280, height: 1920, alt: "A photo of the Geysir in Iceland" },
+  { id: 38, width: 1280, height: 853, alt: "A photo of waterfalls in Iceland" },
+  { id: 41, width: 1280, height: 853, alt: "A photo of the oldest church in Iceland with hayballs on the field" },
+];
+---
+
+<div class="mb-8 lg:mb-12">
+  <div class="flex items-center gap-4 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl border border-border/20">
+    <div class="relative">
+      <img src="/profile-pic-200.webp" width="60" height="60" class="h-15 w-15 rounded-full ring-4 ring-white shadow-lg" alt="Claes Nymand Nilsson profile" />
+      <div class="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-2 border-white"></div>
+    </div>
+    <div>
+      <h2 class="font-semibold text-lg text-gray-900">Claes Nymand Nilsson</h2>
+      <p class="text-gray-600 text-sm">Biotech Scientist & Full-Stack Developer</p>
+      <p class="text-gray-500 text-xs mt-1">Copenhagen, Denmark</p>
+    </div>
+  </div>
+</div>
+
+<div class="mb-12">
+  <div class="space-y-6">
+    <h1 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
+      <span class="block text-gray-900">Hey there!</span>
+      <span class="block mt-2">
+        I&apos;m a <span class="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">biotech scientist</span>
+        and <span class="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">software developer</span>
+      </span>
+      <span class="block mt-2 text-gray-700">from Copenhagen</span>
+    </h1>
+    <p class="text-lg text-gray-600 max-w-2xl leading-relaxed">
+      I blend scientific rigor with creative problem-solving to build impactful solutions in biotechnology and software development.
+    </p>
+  </div>
+</div>
+
+<div class="flex flex-wrap gap-4 mb-16 lg:mb-24">
+  <a href="/blogs" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200">
+    <span class="font-medium">Read my blogs</span>
+  </a>
+  <a href="https://github.com/claesnn" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg transition-colors duration-200 border border-gray-200">
+    <span class="font-medium">View my code</span>
+  </a>
+  <a href="https://linkedin.com/in/claesnn/" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200">
+    <span class="font-medium">Connect with me</span>
+  </a>
+</div>
+
+<div class="space-y-12">
+  <section class="rounded-lg bg-card text-card-foreground border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
+    <div class="flex flex-col space-y-1.5 p-6 pb-6">
+      <div class="flex items-center gap-3">
+        <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
+        <a href="/software"><h2 class="text-4xl font-bold">Software</h2></a>
+      </div>
+    </div>
+    <div class="p-6 pt-0">
+      <p class="text-slate-700">Selected software projects and experiments across static sites, React, Vue, Svelte, and related tools.</p>
+    </div>
+  </section>
+
+  <section class="rounded-lg bg-card text-card-foreground border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50">
+    <div class="flex flex-col space-y-1.5 p-6 pb-6">
+      <div class="flex items-center gap-3">
+        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+        <a href="/biotech"><h2 class="text-4xl font-bold">Biotech</h2></a>
+      </div>
+    </div>
+    <div class="p-6 pt-0">
+      <PaperCarousel />
+    </div>
+  </section>
+
+  <section class="rounded-lg bg-card text-card-foreground border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50">
+    <div class="flex flex-col space-y-1.5 p-6 pb-6">
+      <div class="flex items-center gap-3">
+        <div class="h-2 w-2 bg-purple-500 rounded-full"></div>
+        <a href="/photography"><h2 class="text-4xl font-bold">Photography</h2></a>
+      </div>
+    </div>
+    <div class="p-6 pt-0">
+      <div class="grid sm:grid-cols-2 gap-4 lg:gap-6">
+        {photos.map((photo) => (
+          <a href={`/photography/${photo.id}`}>
+            <img alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" class="rounded-xl hover:scale-105 transition-transform duration-300 shadow-md" srcset={`/images/${photo.id}-200.webp 200w, /images/${photo.id}-420.webp 420w, /images/${photo.id}-420.webp 640w, /images/${photo.id}-640.webp 960w,/images/${photo.id}-640.webp 1280w`} />
+          </a>
+        ))}
+      </div>
+      <div class="flex justify-center mt-6">
+        <a href="/photography" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-purple-50 h-10 px-4 py-2 text-purple-600 hover:text-purple-700">
+          <span class="mr-2">View all photos</span>
+          →
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

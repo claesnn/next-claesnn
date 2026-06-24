@@ -15,6 +15,8 @@
 
 # production
 /build
+/dist
+/.astro
 
 # misc
 .DS_Store
@@ -37,3 +39,4 @@ next-env.d.ts
 
 # OpenAPI spec files
 *.yaml
+!pnpm-workspace.yaml

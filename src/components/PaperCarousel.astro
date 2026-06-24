@@ -1,0 +1,103 @@
+---
+const papers = [
+  {
+    title:
+      "Versatile microscale screening platform for improving recombinant protein production in Chinese hamster ovary cells",
+    description:
+      "In this project, we developed a screening platform in 96-deep well plates. The platform enabled semi-automated cell counting, high-throughput protein secretion evaluation using split-GFP and the plate format enabled fast transfection and screening.<br /><br />My contribution to the project included cloning of plasmids encoding genes related to protein production and secretion. Evaluating the system for testing improvement of protein production and secretion for difficult-to-express proteins.",
+    tags: ["Split-GFP", "Celigo", "Deep Well Plates", "Duetz", "Transient transfection", "CHO", "Protein Secretion"],
+    url: "https://pubmed.ncbi.nlm.nih.gov/26657798/",
+    image: "/papers/0.webp",
+  },
+  {
+    title:
+      "Non-Versatile microscale screening platform for improving recombinant protein production in Chinese hamster ovary cells",
+    description:
+      "In this project, we developed a screening platform in 96-deep well plates. The platform enabled semi-automated cell counting, high-throughput protein secretion evaluation using split-GFP and the plate format enabled fast transfection and screening.<br /><br />My contribution to the project included cloning of plasmids encoding genes related to protein production and secretion. Evaluating the system for testing improvement of protein production and secretion for difficult-to-express proteins.",
+    tags: ["Split-GFP", "Celigo", "Deep Well Plates", "Duetz", "Transient transfection", "CHO", "Protein Secretion"],
+    url: "https://pubmed.ncbi.nlm.nih.gov/26657798/",
+    image: "/papers/0.webp",
+  },
+  {
+    title:
+      "Semi-Versatile microscale screening platform for improving recombinant protein production in Chinese hamster ovary cells",
+    description:
+      "In this project, we developed a screening platform in 96-deep well plates. The platform enabled semi-automated cell counting, high-throughput protein secretion evaluation using split-GFP and the plate format enabled fast transfection and screening.<br /><br />My contribution to the project included cloning of plasmids encoding genes related to protein production and secretion. Evaluating the system for testing improvement of protein production and secretion for difficult-to-express proteins.",
+    tags: ["Split-GFP", "Celigo", "Deep Well Plates", "Duetz", "Transient transfection", "CHO", "Protein Secretion"],
+    url: "https://pubmed.ncbi.nlm.nih.gov/26657798/",
+    image: "/papers/0.webp",
+  },
+];
+---
+
+<div class="bg-gray-50 py-10 px-2" data-paper-carousel data-papers={JSON.stringify(papers)}>
+  <div class="flex flex-col max-w-lg mx-auto">
+    <a href={papers[0].url} data-paper-link>
+      <div class="rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col">
+        <div class="flex flex-col space-y-1.5 p-6">
+          <h3 class="text-2xl font-semibold leading-none tracking-tight" data-paper-title>{papers[0].title}</h3>
+        </div>
+        <div class="p-6 pt-0">
+          <img src={papers[0].image} width="160" height="160" class="rounded-xl w-40 h-40 float-left mr-4" alt={papers[0].title} data-paper-image />
+          <p class="text-slate-600 prose-sm" data-paper-description set:html={papers[0].description} />
+          <div class="flex flex-row flex-wrap gap-2 mt-4" data-paper-tags>
+            {papers[0].tags.map((tag) => <span class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground">{tag}</span>)}
+          </div>
+        </div>
+      </div>
+    </a>
+    <div class="mx-auto mt-4 place-items-center flex">
+      <button class="inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground h-9 px-3" type="button" data-paper-prev aria-label="Previous paper">
+        ←
+      </button>
+      <span class="mx-4 text-xs text-slate-500" data-paper-count>1/{papers.length}</span>
+      <button class="inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground h-9 px-3" type="button" data-paper-next aria-label="Next paper">
+        →
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll("[data-paper-carousel]").forEach((carousel) => {
+    const papers = JSON.parse(carousel.getAttribute("data-papers") || "[]");
+    const link = carousel.querySelector("[data-paper-link]");
+    const title = carousel.querySelector("[data-paper-title]");
+    const image = carousel.querySelector("[data-paper-image]");
+    const description = carousel.querySelector("[data-paper-description]");
+    const tags = carousel.querySelector("[data-paper-tags]");
+    const count = carousel.querySelector("[data-paper-count]");
+    const prev = carousel.querySelector("[data-paper-prev]");
+    const next = carousel.querySelector("[data-paper-next]");
+    let index = Number(new URLSearchParams(window.location.search).get("paper") || "0");
+    if (!Number.isFinite(index) || index < 0 || index >= papers.length) index = 0;
+
+    function render() {
+      const paper = papers[index];
+      if (link) link.setAttribute("href", paper.url);
+      if (title) title.textContent = paper.title;
+      if (image) {
+        image.setAttribute("src", paper.image);
+        image.setAttribute("alt", paper.title);
+      }
+      if (description) description.innerHTML = paper.description;
+      if (tags) {
+        tags.innerHTML = paper.tags.map((tag: string) => `<span class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground">${tag}</span>`).join("");
+      }
+      if (count) count.textContent = `${index + 1}/${papers.length}`;
+      const params = new URLSearchParams(window.location.search);
+      params.set("paper", String(index));
+      window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
+    }
+
+    prev?.addEventListener("click", () => {
+      index = (index - 1 + papers.length) % papers.length;
+      render();
+    });
+    next?.addEventListener("click", () => {
+      index = (index + 1) % papers.length;
+      render();
+    });
+    render();
+  });
+</script>

@@ -1,0 +1,81 @@
+---
+import { imageMeta } from "../../lib/imageMeta";
+
+type Props = {
+  initialImage: number;
+};
+
+const { initialImage } = Astro.props;
+const imageCount = 54;
+---
+
+<div class="flex flex-col items-center" data-photo-viewer data-initial-image={initialImage} data-image-count={imageCount}>
+  <img
+    src={`/images/${initialImage}-1280.webp`}
+    alt={`Photography ${initialImage}`}
+    class="mx-auto max-h-[calc(100vh-80px)] max-w-full cursor-pointer hover:opacity-90 transition-opacity object-contain"
+    width="1280"
+    height={imageMeta[initialImage]?.height || 960}
+    data-viewer-open
+  />
+  <p class="text-sm text-gray-500 mt-2">Click to open lightbox</p>
+</div>
+
+<div class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 items-center justify-center" data-viewer-lightbox>
+  <button type="button" class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-10" aria-label="Close lightbox" data-viewer-close>×</button>
+  <button type="button" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-gray-300 z-10" aria-label="Previous image" data-viewer-prev>‹</button>
+  <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl hover:text-gray-300 z-10" aria-label="Next image" data-viewer-next>›</button>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vh] flex items-center justify-center">
+    <img src={`/images/${initialImage}-1280.webp`} alt={`Photography ${initialImage}`} class="max-h-full max-w-full object-contain transition-opacity duration-300" data-viewer-image />
+  </div>
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm" data-viewer-count>{initialImage + 1} / {imageCount}</div>
+</div>
+
+<script>
+  const viewer = document.querySelector("[data-photo-viewer]");
+  const lightbox = document.querySelector("[data-viewer-lightbox]");
+  const image = document.querySelector("[data-viewer-image]");
+  const count = document.querySelector("[data-viewer-count]");
+  const total = Number(viewer?.getAttribute("data-image-count") || "0");
+  let current = Number(viewer?.getAttribute("data-initial-image") || "0");
+
+  function show(index: number) {
+    current = (index + total) % total;
+    image?.setAttribute("src", `/images/${current}-1280.webp`);
+    image?.setAttribute("alt", `Photography ${current}`);
+    if (count) count.textContent = `${current + 1} / ${total}`;
+  }
+
+  function open() {
+    show(current);
+    lightbox?.classList.remove("hidden");
+    lightbox?.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  }
+
+  function close() {
+    lightbox?.classList.add("hidden");
+    lightbox?.classList.remove("flex");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelector("[data-viewer-open]")?.addEventListener("click", open);
+  document.querySelector("[data-viewer-close]")?.addEventListener("click", close);
+  document.querySelector("[data-viewer-prev]")?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    show(current - 1);
+  });
+  document.querySelector("[data-viewer-next]")?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    show(current + 1);
+  });
+  lightbox?.addEventListener("click", (event) => {
+    if (event.target === lightbox) close();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (lightbox?.classList.contains("hidden")) return;
+    if (event.key === "Escape") close();
+    if (event.key === "ArrowLeft") show(current - 1);
+    if (event.key === "ArrowRight") show(current + 1);
+  });
+</script>

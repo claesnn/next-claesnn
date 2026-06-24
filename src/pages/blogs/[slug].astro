@@ -1,0 +1,61 @@
+---
+import MyButton from "../../components/MyButton.astro";
+import AuthorInfo from "../../components/AuthorInfo.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  const modules = import.meta.glob("../../../content/*.mdx", { eager: true });
+
+  return Object.entries(modules).map(([file, value]) => {
+    const mod = value as {
+      frontmatter: {
+        title: string;
+        publishedAt: string;
+        summary: string;
+      };
+      default: any;
+    };
+    const slug = file.split("/").pop()?.replace(/\.mdx$/, "") ?? "";
+
+    return {
+      params: { slug },
+      props: {
+        post: {
+          slug,
+          metadata: mod.frontmatter,
+          Content: mod.default,
+        },
+      },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const formattedDate = new Date(post.metadata.publishedAt).toLocaleDateString(
+  "en-US",
+  {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  },
+);
+const Content = post.Content;
+---
+
+<BaseLayout title={post.metadata.title} description={post.metadata.summary}>
+  <article>
+    <div class="text-center mb-12">
+      <p class="text-xs uppercase text-slate-600 mb-2">{formattedDate}</p>
+      <h2 class="text-4xl lg:text-6xl mb-4 font-bold">{post.metadata.title}</h2>
+      <p class="text-slate-600 max-w-xl mx-auto">{post.metadata.summary}</p>
+    </div>
+    <div class="prose lg:prose-lg mt-3 mx-auto">
+      <Content components={{ MyButton }} />
+    </div>
+    <div class="mx-auto max-w-3xl p-8 bg-slate-50 w-full rounded-lg mt-16">
+      <div class="max-w-md mx-auto space-y-4">
+        <AuthorInfo />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

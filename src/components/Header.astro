@@ -1,0 +1,72 @@
+---
+const links = [
+  { name: "Blogs", route: "/blogs" },
+  { name: "Software", route: "/software" },
+  { name: "Photography", route: "/photography" },
+];
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="border-b border-border/40 shadow-sm w-full fixed top-0 bg-white/95 backdrop-blur-sm z-50">
+  <div class="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto">
+    <a href="/" class="flex place-items-center" data-menu-link>
+      <img src="/logo.webp" alt="logo" class="w-8 h-9 mr-3" />
+      <h1 class="text-2xl font-display">CLAESNN</h1>
+    </a>
+    <button class="sm:hidden" type="button" aria-label="Toggle menu" aria-expanded="false" data-menu-toggle>
+      <svg data-menu-open-icon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <svg data-menu-close-icon class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+    <nav class="hidden gap-6 sm:flex">
+      {links.map((link) => (
+        <a href={link.route} class:list={["inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:underline h-10 px-4 py-2", pathname.startsWith(link.route) && "underline text-blue-900"]}>
+          {link.name}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<nav class="hidden w-full z-10 fixed top-[50px]" data-menu-sidebar>
+  <div class="bg-gray-900 h-screen flex-grow opacity-40" data-menu-overlay></div>
+  <aside class="w-[20rem] bg-white h-screen p-3 flex flex-col">
+    {links.map((link) => (
+      <a href={link.route} class:list={["inline-flex items-center rounded-md text-lg font-medium transition-colors hover:underline h-10 px-4 py-2", pathname.startsWith(link.route) && "underline"]} data-menu-link>
+        {link.name}
+      </a>
+    ))}
+  </aside>
+</nav>
+
+<script>
+  const toggle = document.querySelector("[data-menu-toggle]");
+  const sidebar = document.querySelector("[data-menu-sidebar]");
+  const openIcon = document.querySelector("[data-menu-open-icon]");
+  const closeIcon = document.querySelector("[data-menu-close-icon]");
+  const closeTargets = document.querySelectorAll("[data-menu-overlay], [data-menu-link]");
+
+  function setMenu(open: boolean) {
+    sidebar?.classList.toggle("hidden", !open);
+    sidebar?.classList.toggle("flex", open);
+    openIcon?.classList.toggle("hidden", open);
+    closeIcon?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "visible";
+  }
+
+  toggle?.addEventListener("click", () => {
+    setMenu(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  closeTargets.forEach((target) => {
+    target.addEventListener("click", () => setMenu(false));
+  });
+</script>
