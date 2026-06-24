@@ -39,4 +39,5 @@ next-env.d.ts
 
 # OpenAPI spec files
 *.yaml
+!pnpm-lock.yaml
 !pnpm-workspace.yaml
