@@ -9,95 +9,123 @@ const photos = [
   { id: 38, width: 1280, height: 853, alt: "A photo of waterfalls in Iceland" },
   { id: 41, width: 1280, height: 853, alt: "A photo of the oldest church in Iceland with hayballs on the field" },
 ];
+
+const focusAreas = [
+  "Protein expression workflows",
+  "Mammalian cell culture",
+  "Assay automation",
+  "Scientific software",
+];
 ---
 
-<div class="mb-8 lg:mb-12">
-  <div class="flex items-center gap-4 p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl border border-border/20">
-    <div class="relative">
-      <img src="/profile-pic-200.webp" width="60" height="60" class="h-15 w-15 rounded-full ring-4 ring-white shadow-lg" alt="Claes Nymand Nilsson profile" />
-      <div class="absolute -bottom-1 -right-1 h-5 w-5 bg-green-500 rounded-full border-2 border-white"></div>
+<section class="grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-stretch">
+  <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+    <div class="mb-8 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-teal-800">
+      <span class="h-px w-10 bg-teal-700"></span>
+      Copenhagen, Denmark
     </div>
-    <div>
-      <h2 class="font-semibold text-lg text-gray-900">Claes Nymand Nilsson</h2>
-      <p class="text-gray-600 text-sm">Biotech Scientist & Full-Stack Developer</p>
-      <p class="text-gray-500 text-xs mt-1">Copenhagen, Denmark</p>
-    </div>
-  </div>
-</div>
-
-<div class="mb-12">
-  <div class="space-y-6">
-    <h1 class="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
-      <span class="block text-gray-900">Hey there!</span>
-      <span class="block mt-2">
-        I&apos;m a <span class="bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">biotech scientist</span>
-        and <span class="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">software developer</span>
-      </span>
-      <span class="block mt-2 text-gray-700">from Copenhagen</span>
+    <h1 class="max-w-4xl text-4xl font-bold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
+      Biotech scientist building reliable software for scientific work.
     </h1>
-    <p class="text-lg text-gray-600 max-w-2xl leading-relaxed">
-      I blend scientific rigor with creative problem-solving to build impactful solutions in biotechnology and software development.
+    <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+      I combine hands-on pharma and biotechnology experience with full-stack development to make experimental workflows, data analysis, and technical communication more precise.
     </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/biotech" class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-5 text-sm font-bold text-primary-foreground transition-colors hover:bg-teal-900">
+        View biotech work
+      </a>
+      <a href="/software" class="inline-flex h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 text-sm font-bold text-slate-800 transition-colors hover:border-teal-700 hover:text-teal-900">
+        Software projects
+      </a>
+      <a href="https://linkedin.com/in/claesnn/" class="inline-flex h-11 items-center justify-center rounded-md border border-slate-300 bg-white px-5 text-sm font-bold text-slate-800 transition-colors hover:border-teal-700 hover:text-teal-900">
+        LinkedIn
+      </a>
+    </div>
   </div>
-</div>
 
-<div class="flex flex-wrap gap-4 mb-16 lg:mb-24">
-  <a href="/blogs" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200">
-    <span class="font-medium">Read my blogs</span>
-  </a>
-  <a href="https://github.com/claesnn" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg transition-colors duration-200 border border-gray-200">
-    <span class="font-medium">View my code</span>
-  </a>
-  <a href="https://linkedin.com/in/claesnn/" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 border border-blue-200">
-    <span class="font-medium">Connect with me</span>
-  </a>
-</div>
-
-<div class="space-y-12">
-  <section class="rounded-lg bg-card text-card-foreground border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
-    <div class="flex flex-col space-y-1.5 p-6 pb-6">
-      <div class="flex items-center gap-3">
-        <div class="h-2 w-2 bg-blue-500 rounded-full"></div>
-        <a href="/software"><h2 class="text-4xl font-bold">Software</h2></a>
+  <aside class="rounded-lg border border-slate-200 bg-slate-950 p-6 text-white shadow-sm sm:p-8">
+    <div class="flex items-center gap-4">
+      <img src="/profile-pic-200.webp" width="80" height="80" class="h-20 w-20 rounded-full ring-4 ring-white/10" alt="Claes Nymand Nilsson profile" />
+      <div>
+        <h2 class="text-xl font-bold">Claes Nymand Nilsson</h2>
+        <p class="mt-1 text-sm text-slate-300">Biotech engineer & software developer</p>
       </div>
     </div>
-    <div class="p-6 pt-0">
-      <p class="text-slate-700">Selected software projects and experiments across static sites, React, Vue, Svelte, and related tools.</p>
+    <dl class="mt-8 grid grid-cols-2 gap-4 border-y border-white/10 py-6">
+      <div>
+        <dt class="text-xs uppercase tracking-[0.16em] text-slate-400">Industry</dt>
+        <dd class="mt-1 text-2xl font-bold">10+ yrs</dd>
+      </div>
+      <div>
+        <dt class="text-xs uppercase tracking-[0.16em] text-slate-400">Focus</dt>
+        <dd class="mt-1 text-2xl font-bold">R&D</dd>
+      </div>
+    </dl>
+    <div class="space-y-3">
+      {focusAreas.map((area) => (
+        <div class="flex items-center gap-3 rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100">
+          <span class="h-2 w-2 rounded-full bg-teal-300"></span>
+          {area}
+        </div>
+      ))}
     </div>
-  </section>
+  </aside>
+</section>
 
-  <section class="rounded-lg bg-card text-card-foreground border-0 shadow-lg bg-gradient-to-br from-green-50 to-emerald-50">
-    <div class="flex flex-col space-y-1.5 p-6 pb-6">
-      <div class="flex items-center gap-3">
-        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
-        <a href="/biotech"><h2 class="text-4xl font-bold">Biotech</h2></a>
+<div class="mt-14 grid gap-5 md:grid-cols-3">
+  <a href="/biotech" class="group rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-teal-700">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-teal-800">Biotech</p>
+    <h2 class="mt-3 text-2xl font-bold text-slate-950">Protein production and screening</h2>
+    <p class="mt-3 text-sm leading-6 text-slate-600">Selected scientific work across CHO systems, secretion assays, cloning, and microscale screening platforms.</p>
+    <span class="mt-5 inline-flex text-sm font-bold text-teal-900 group-hover:underline">Review publications -></span>
+  </a>
+  <a href="/software" class="group rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-teal-700">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Software</p>
+    <h2 class="mt-3 text-2xl font-bold text-slate-950">Tools, interfaces, and data workflows</h2>
+    <p class="mt-3 text-sm leading-6 text-slate-600">Full-stack experiments and production-minded interfaces shaped by scientific problem solving.</p>
+    <span class="mt-5 inline-flex text-sm font-bold text-teal-900 group-hover:underline">View projects -></span>
+  </a>
+  <a href="/blogs" class="group rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-teal-700">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Writing</p>
+    <h2 class="mt-3 text-2xl font-bold text-slate-950">Technical notes and learning logs</h2>
+    <p class="mt-3 text-sm leading-6 text-slate-600">Concise notes on software development, biotechnology, and the practical overlap between the two.</p>
+    <span class="mt-5 inline-flex text-sm font-bold text-teal-900 group-hover:underline">Read posts -></span>
+  </a>
+</div>
+
+<div class="mt-16 space-y-12">
+  <section class="rounded-lg border border-slate-200 bg-white shadow-sm">
+    <div class="border-b border-slate-200 p-6">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-teal-800">Research profile</p>
+          <a href="/biotech"><h2 class="mt-2 text-3xl font-bold text-slate-950">Selected biotech work</h2></a>
+        </div>
+        <a href="/biotech" class="text-sm font-bold text-teal-900 hover:underline">Open biotech page -></a>
       </div>
     </div>
-    <div class="p-6 pt-0">
+    <div class="p-4 sm:p-6">
       <PaperCarousel />
     </div>
   </section>
 
-  <section class="rounded-lg bg-card text-card-foreground border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50">
-    <div class="flex flex-col space-y-1.5 p-6 pb-6">
-      <div class="flex items-center gap-3">
-        <div class="h-2 w-2 bg-purple-500 rounded-full"></div>
-        <a href="/photography"><h2 class="text-4xl font-bold">Photography</h2></a>
+  <section class="rounded-lg border border-slate-200 bg-white shadow-sm">
+    <div class="border-b border-slate-200 p-6">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Photography</p>
+          <a href="/photography"><h2 class="mt-2 text-3xl font-bold text-slate-950">Field notes in pictures</h2></a>
+        </div>
+        <a href="/photography" class="text-sm font-bold text-teal-900 hover:underline">View all photos -></a>
       </div>
     </div>
-    <div class="p-6 pt-0">
-      <div class="grid sm:grid-cols-2 gap-4 lg:gap-6">
+    <div class="p-4 sm:p-6">
+      <div class="grid sm:grid-cols-2 gap-3 lg:grid-cols-3 lg:gap-4">
         {photos.map((photo) => (
-          <a href={`/photography/${photo.id}`}>
-            <img alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" class="rounded-xl hover:scale-105 transition-transform duration-300 shadow-md" srcset={`/images/${photo.id}-200.webp 200w, /images/${photo.id}-420.webp 420w, /images/${photo.id}-420.webp 640w, /images/${photo.id}-640.webp 960w,/images/${photo.id}-640.webp 1280w`} />
+          <a href={`/photography/${photo.id}`} class="group block overflow-hidden rounded-md border border-slate-200 bg-slate-100">
+            <img alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" class="aspect-[4/3] h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" srcset={`/images/${photo.id}-200.webp 200w, /images/${photo.id}-420.webp 420w, /images/${photo.id}-420.webp 640w, /images/${photo.id}-640.webp 960w,/images/${photo.id}-640.webp 1280w`} />
           </a>
         ))}
-      </div>
-      <div class="flex justify-center mt-6">
-        <a href="/photography" class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-purple-50 h-10 px-4 py-2 text-purple-600 hover:text-purple-700">
-          <span class="mr-2">View all photos</span>
-          →
-        </a>
       </div>
     </div>
   </section>

@@ -30,28 +30,29 @@ const papers = [
 ];
 ---
 
-<div class="bg-gray-50 py-10 px-2" data-paper-carousel data-papers={JSON.stringify(papers)}>
-  <div class="flex flex-col max-w-lg mx-auto">
-    <a href={papers[0].url} data-paper-link>
-      <div class="rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col">
-        <div class="flex flex-col space-y-1.5 p-6">
-          <h3 class="text-2xl font-semibold leading-none tracking-tight" data-paper-title>{papers[0].title}</h3>
+<div class="bg-slate-50/80 px-2 py-6 sm:px-4" data-paper-carousel data-papers={JSON.stringify(papers)}>
+  <div class="flex flex-col max-w-3xl mx-auto">
+    <a href={papers[0].url} class="group" data-paper-link>
+      <div class="rounded-lg border border-slate-200 bg-card text-card-foreground shadow-sm flex flex-col transition-colors group-hover:border-teal-700">
+        <div class="flex flex-col space-y-2 border-b border-slate-200 p-5 sm:p-6">
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-teal-800">Publication</p>
+          <h3 class="text-2xl font-bold leading-tight text-slate-950" data-paper-title>{papers[0].title}</h3>
         </div>
-        <div class="p-6 pt-0">
-          <img src={papers[0].image} width="160" height="160" class="rounded-xl w-40 h-40 float-left mr-4" alt={papers[0].title} data-paper-image />
-          <p class="text-slate-600 prose-sm" data-paper-description set:html={papers[0].description} />
+        <div class="p-5 sm:p-6">
+          <img src={papers[0].image} width="160" height="160" class="mb-4 h-36 w-36 rounded-md border border-slate-200 object-cover sm:float-left sm:mb-2 sm:mr-5 sm:h-40 sm:w-40" alt={papers[0].title} data-paper-image />
+          <p class="text-sm leading-7 text-slate-600" data-paper-description set:html={papers[0].description} />
           <div class="flex flex-row flex-wrap gap-2 mt-4" data-paper-tags>
-            {papers[0].tags.map((tag) => <span class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground">{tag}</span>)}
+            {papers[0].tags.map((tag) => <span class="inline-flex items-center rounded-md border border-teal-100 bg-teal-50 px-2.5 py-1 text-xs font-bold text-teal-900">{tag}</span>)}
           </div>
         </div>
       </div>
     </a>
     <div class="mx-auto mt-4 place-items-center flex">
-      <button class="inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground h-9 px-3" type="button" data-paper-prev aria-label="Previous paper">
+      <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-accent hover:text-accent-foreground" type="button" data-paper-prev aria-label="Previous paper">
         ←
       </button>
-      <span class="mx-4 text-xs text-slate-500" data-paper-count>1/{papers.length}</span>
-      <button class="inline-flex items-center justify-center rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground h-9 px-3" type="button" data-paper-next aria-label="Next paper">
+      <span class="mx-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-500" data-paper-count>1/{papers.length}</span>
+      <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-accent hover:text-accent-foreground" type="button" data-paper-next aria-label="Next paper">
         →
       </button>
     </div>
@@ -82,7 +83,7 @@ const papers = [
       }
       if (description) description.innerHTML = paper.description;
       if (tags) {
-        tags.innerHTML = paper.tags.map((tag: string) => `<span class="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold bg-secondary text-secondary-foreground">${tag}</span>`).join("");
+        tags.innerHTML = paper.tags.map((tag: string) => `<span class="inline-flex items-center rounded-md border border-teal-100 bg-teal-50 px-2.5 py-1 text-xs font-bold text-teal-900">${tag}</span>`).join("");
       }
       if (count) count.textContent = `${index + 1}/${papers.length}`;
       const params = new URLSearchParams(window.location.search);

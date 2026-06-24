@@ -1,7 +1,78 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import PaperCarousel from "../../components/PaperCarousel.astro";
+
+const capabilities = [
+  {
+    title: "Cell line and protein expression",
+    body: "Experience with CHO-based expression systems, transient transfection, secretion-focused optimization, and difficult-to-express proteins.",
+  },
+  {
+    title: "Microscale screening",
+    body: "Work with 96-deep well plate formats, high-throughput readouts, automated cell counting, and split-GFP secretion assays.",
+  },
+  {
+    title: "Scientific software mindset",
+    body: "A practical engineering approach to data handling, reproducibility, interfaces, and tools that support laboratory decision-making.",
+  },
+];
+
+const methods = ["CHO cells", "Split-GFP", "Deep well plates", "Transient transfection", "Plasmid cloning", "Celigo", "Duetz", "Protein secretion"];
 ---
 
-<BaseLayout title="Biotech" description="Biotech work by Claes Nymand Nilsson">
-  <div>Biotech</div>
+<BaseLayout title="Biotech" description="Biotech and pharma-related work by Claes Nymand Nilsson">
+  <section class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+    <p class="text-xs font-bold uppercase tracking-[0.18em] text-teal-800">Biotech portfolio</p>
+    <div class="mt-4 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+      <div>
+        <h1 class="text-4xl font-bold leading-tight text-slate-950 sm:text-5xl">Scientific work across protein expression, screening, and assay workflows.</h1>
+        <p class="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          My biotech work centers on practical experimental systems: building, evaluating, and communicating platforms that make protein production and secretion easier to test at useful scale.
+        </p>
+      </div>
+      <dl class="grid grid-cols-2 gap-4 rounded-lg border border-slate-200 bg-slate-50 p-5">
+        <div>
+          <dt class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Experience</dt>
+          <dd class="mt-2 text-3xl font-bold text-slate-950">10+ yrs</dd>
+        </div>
+        <div>
+          <dt class="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Domain</dt>
+          <dd class="mt-2 text-3xl font-bold text-slate-950">Pharma</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="mt-8 grid gap-5 md:grid-cols-3">
+    {capabilities.map((capability) => (
+      <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-950">{capability.title}</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-600">{capability.body}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="mt-8 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+    <div class="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Methods and systems</p>
+        <h2 class="mt-2 text-2xl font-bold text-slate-950">Experimental toolkit</h2>
+      </div>
+      <div class="flex max-w-3xl flex-wrap gap-2">
+        {methods.map((method) => (
+          <span class="inline-flex items-center rounded-md border border-teal-100 bg-teal-50 px-3 py-1.5 text-xs font-bold text-teal-900">{method}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-8 rounded-lg border border-slate-200 bg-white shadow-sm">
+    <div class="border-b border-slate-200 p-6">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-teal-800">Selected publication</p>
+      <h2 class="mt-2 text-3xl font-bold text-slate-950">Research contribution</h2>
+    </div>
+    <div class="p-4 sm:p-6">
+      <PaperCarousel />
+    </div>
+  </section>
 </BaseLayout>

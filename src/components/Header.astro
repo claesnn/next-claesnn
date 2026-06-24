@@ -1,5 +1,6 @@
 ---
 const links = [
+  { name: "Biotech", route: "/biotech" },
   { name: "Blogs", route: "/blogs" },
   { name: "Software", route: "/software" },
   { name: "Photography", route: "/photography" },
@@ -8,13 +9,16 @@ const links = [
 const pathname = Astro.url.pathname;
 ---
 
-<header class="border-b border-border/40 shadow-sm w-full fixed top-0 bg-white/95 backdrop-blur-sm z-50">
-  <div class="flex justify-between px-4 py-3 place-items-center max-w-7xl mx-auto">
-    <a href="/" class="flex place-items-center" data-menu-link>
-      <img src="/logo.webp" alt="logo" class="w-8 h-9 mr-3" />
-      <h1 class="text-2xl font-display">CLAESNN</h1>
+<header class="border-b border-slate-200/80 w-full fixed top-0 bg-white/90 backdrop-blur-md z-50">
+  <div class="flex justify-between px-5 py-3 place-items-center max-w-7xl mx-auto">
+    <a href="/" class="flex place-items-center gap-3" data-menu-link>
+      <img src="/logo.webp" alt="ClaesNN logo" class="w-8 h-9" />
+      <div>
+        <h1 class="text-xl font-display leading-none tracking-wide text-slate-950">CLAESNN</h1>
+        <p class="hidden text-[11px] uppercase tracking-[0.18em] text-slate-500 sm:block">Biotech & software</p>
+      </div>
     </a>
-    <button class="sm:hidden" type="button" aria-label="Toggle menu" aria-expanded="false" data-menu-toggle>
+    <button class="sm:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-200 text-slate-700" type="button" aria-label="Toggle menu" aria-expanded="false" data-menu-toggle>
       <svg data-menu-open-icon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="4" x2="20" y1="12" y2="12"></line>
         <line x1="4" x2="20" y1="6" y2="6"></line>
@@ -25,9 +29,9 @@ const pathname = Astro.url.pathname;
         <path d="m6 6 12 12"></path>
       </svg>
     </button>
-    <nav class="hidden gap-6 sm:flex">
+    <nav class="hidden gap-2 sm:flex">
       {links.map((link) => (
-        <a href={link.route} class:list={["inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:underline h-10 px-4 py-2", pathname.startsWith(link.route) && "underline text-blue-900"]}>
+        <a href={link.route} class:list={["inline-flex items-center justify-center rounded-md text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-950 h-10 px-3 py-2", pathname.startsWith(link.route) && "bg-teal-50 text-teal-900"]}>
           {link.name}
         </a>
       ))}
@@ -35,11 +39,11 @@ const pathname = Astro.url.pathname;
   </div>
 </header>
 
-<nav class="hidden w-full z-10 fixed top-[50px]" data-menu-sidebar>
-  <div class="bg-gray-900 h-screen flex-grow opacity-40" data-menu-overlay></div>
-  <aside class="w-[20rem] bg-white h-screen p-3 flex flex-col">
+<nav class="hidden w-full z-10 fixed top-[64px]" data-menu-sidebar>
+  <div class="bg-slate-950 h-screen flex-grow opacity-40" data-menu-overlay></div>
+  <aside class="w-[20rem] bg-white h-screen p-3 flex flex-col border-r border-slate-200">
     {links.map((link) => (
-      <a href={link.route} class:list={["inline-flex items-center rounded-md text-lg font-medium transition-colors hover:underline h-10 px-4 py-2", pathname.startsWith(link.route) && "underline"]} data-menu-link>
+      <a href={link.route} class:list={["inline-flex items-center rounded-md text-lg font-medium transition-colors hover:bg-slate-100 h-11 px-4 py-2", pathname.startsWith(link.route) && "bg-teal-50 text-teal-900"]} data-menu-link>
         {link.name}
       </a>
     ))}
