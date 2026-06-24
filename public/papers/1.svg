@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="790" height="654" viewBox="0 0 790 654" role="img" aria-labelledby="title desc">
+  <title id="title">Journal of Biotechnology article cover</title>
+  <desc id="desc">Cover-style screenshot for the article Mammalian perfusion cultivation at high L-Arginine concentration.</desc>
+  <rect width="790" height="654" fill="#f8fafc" />
+  <rect x="40" y="32" width="710" height="590" rx="2" fill="#ffffff" stroke="#cbd5e1" />
+  <rect x="40" y="32" width="710" height="72" fill="#f97316" />
+  <text x="70" y="78" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Journal of Biotechnology</text>
+  <text x="70" y="145" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="16">Volume 395, November 2024, Pages 80-83</text>
+  <text x="70" y="176" fill="#475569" font-family="Arial, Helvetica, sans-serif" font-size="16">https://doi.org/10.1016/j.jbiotec.2024.09.009</text>
+  <line x1="70" y1="205" x2="720" y2="205" stroke="#e2e8f0" stroke-width="2" />
+  <text x="70" y="249" fill="#0f172a" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">
+    <tspan x="70" dy="0">Mammalian perfusion cultivation at high</tspan>
+    <tspan x="70" dy="36">L-Arginine concentration for efficient</tspan>
+    <tspan x="70" dy="36">production of recombinant protein by</tspan>
+    <tspan x="70" dy="36">increasing perfusion filter transmission</tspan>
+  </text>
+  <text x="70" y="414" fill="#334155" font-family="Arial, Helvetica, sans-serif" font-size="18">
+    <tspan x="70" dy="0">Bjarne Rask Poulsen, Thomas Egebjerg, Matthias Noebel,</tspan>
+    <tspan x="70" dy="28">Kristian Thorsen, Claes Nymand Nilsson, Jais Rose Bjelke</tspan>
+  </text>
+  <rect x="70" y="488" width="112" height="36" rx="18" fill="#fff7ed" stroke="#fed7aa" />
+  <text x="126" y="512" text-anchor="middle" fill="#9a3412" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Perfusion</text>
+  <rect x="196" y="488" width="116" height="36" rx="18" fill="#fff7ed" stroke="#fed7aa" />
+  <text x="254" y="512" text-anchor="middle" fill="#9a3412" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">L-Arginine</text>
+  <rect x="326" y="488" width="174" height="36" rx="18" fill="#fff7ed" stroke="#fed7aa" />
+  <text x="413" y="512" text-anchor="middle" fill="#9a3412" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Filter transmission</text>
+  <text x="70" y="580" fill="#64748b" font-family="Arial, Helvetica, sans-serif" font-size="14">Article preview cover generated from publisher metadata</text>
+</svg>

@@ -11,21 +11,12 @@ const papers = [
   },
   {
     title:
-      "Non-Versatile microscale screening platform for improving recombinant protein production in Chinese hamster ovary cells",
+      "Mammalian perfusion cultivation at high L-Arginine concentration for efficient production of recombinant protein by increasing perfusion filter transmission",
     description:
-      "In this project, we developed a screening platform in 96-deep well plates. The platform enabled semi-automated cell counting, high-throughput protein secretion evaluation using split-GFP and the plate format enabled fast transfection and screening.<br /><br />My contribution to the project included cloning of plasmids encoding genes related to protein production and secretion. Evaluating the system for testing improvement of protein production and secretion for difficult-to-express proteins.",
-    tags: ["Split-GFP", "Celigo", "Deep Well Plates", "Duetz", "Transient transfection", "CHO", "Protein Secretion"],
-    url: "https://pubmed.ncbi.nlm.nih.gov/26657798/",
-    image: "/papers/0.webp",
-  },
-  {
-    title:
-      "Semi-Versatile microscale screening platform for improving recombinant protein production in Chinese hamster ovary cells",
-    description:
-      "In this project, we developed a screening platform in 96-deep well plates. The platform enabled semi-automated cell counting, high-throughput protein secretion evaluation using split-GFP and the plate format enabled fast transfection and screening.<br /><br />My contribution to the project included cloning of plasmids encoding genes related to protein production and secretion. Evaluating the system for testing improvement of protein production and secretion for difficult-to-express proteins.",
-    tags: ["Split-GFP", "Celigo", "Deep Well Plates", "Duetz", "Transient transfection", "CHO", "Protein Secretion"],
-    url: "https://pubmed.ncbi.nlm.nih.gov/26657798/",
-    image: "/papers/0.webp",
+      "Co-authored Journal of Biotechnology paper on mammalian perfusion cultivation at high L-Arginine concentration. The work focuses on improving recombinant protein production by increasing perfusion filter transmission.",
+    tags: ["Perfusion cultivation", "Bioreactors", "L-Arginine", "Filter transmission", "Recombinant protein", "Journal of Biotechnology"],
+    url: "https://www.sciencedirect.com/science/article/abs/pii/S0168165624002529?via%3Dihub",
+    image: "/papers/1.svg",
   },
 ];
 ---
@@ -47,15 +38,17 @@ const papers = [
         </div>
       </div>
     </a>
-    <div class="mx-auto mt-4 place-items-center flex">
-      <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-accent hover:text-accent-foreground" type="button" data-paper-prev aria-label="Previous paper">
-        ←
-      </button>
-      <span class="mx-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-500" data-paper-count>1/{papers.length}</span>
-      <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-accent hover:text-accent-foreground" type="button" data-paper-next aria-label="Next paper">
-        →
-      </button>
-    </div>
+    {papers.length > 1 && (
+      <div class="mx-auto mt-4 place-items-center flex">
+        <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-accent hover:text-accent-foreground" type="button" data-paper-prev aria-label="Previous paper">
+          ←
+        </button>
+        <span class="mx-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-500" data-paper-count>1/{papers.length}</span>
+        <button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-accent hover:text-accent-foreground" type="button" data-paper-next aria-label="Next paper">
+          →
+        </button>
+      </div>
+    )}
   </div>
 </div>
 
