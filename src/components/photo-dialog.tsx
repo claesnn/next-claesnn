@@ -45,7 +45,7 @@ export function PhotoDialog({
       </button>
       <DialogContent
         showCloseButton={false}
-        className="h-screen max-h-screen w-screen max-w-none rounded-none border-0 bg-slate-950 p-0 text-white ring-0 sm:max-w-none"
+        className="flex h-dvh max-h-dvh w-screen max-w-none items-center justify-center overflow-hidden rounded-none border-0 bg-slate-950 p-0 text-white ring-0 sm:max-w-none"
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") show(current - 1)
           if (event.key === "ArrowRight") show(current + 1)
@@ -60,7 +60,7 @@ export function PhotoDialog({
         <img
           src={`/images/${current}-1280.webp`}
           alt={`Photography ${current + 1}`}
-          className="h-full w-full object-contain p-4 sm:p-10"
+          className="h-auto max-h-[calc(100dvh-2rem)] w-auto max-w-[calc(100vw-2rem)] object-contain sm:max-h-[calc(100dvh-5rem)] sm:max-w-[calc(100vw-5rem)]"
         />
         <DialogClose
           render={
