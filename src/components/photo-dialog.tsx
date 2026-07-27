@@ -45,7 +45,7 @@ export function PhotoDialog({
       </button>
       <DialogContent
         showCloseButton={false}
-        className="h-screen max-h-screen w-screen max-w-none rounded-none border-0 bg-slate-950 p-0 text-white ring-0"
+        className="h-screen max-h-screen w-screen max-w-none rounded-none border-0 bg-slate-950 p-0 text-white ring-0 sm:max-w-none"
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") show(current - 1)
           if (event.key === "ArrowRight") show(current + 1)
