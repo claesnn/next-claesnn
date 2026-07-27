@@ -1,10 +1,13 @@
-# Astro version of claesnn.com
+# claesnn.com
 
-Static Astro site using TailwindCSS and MDX.
+Client-rendered React portfolio built with Vite, TanStack Router, TanStack
+Markdown, TanStack Highlight, Tailwind CSS, and shadcn/ui components backed by
+Base UI.
 
 ## Deployment
 
-This project is configured for Cloudflare Pages with `wrangler.toml`.
+This project is configured as a static single-page application for Cloudflare
+Pages. All route requests must fall back to `index.html`.
 
 - Build command: `pnpm run build`
 - Output directory: `dist`

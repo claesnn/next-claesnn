@@ -1,57 +1,47 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Development commands
 
-## Development Commands
+- `pnpm dev` — start the Vite development server
+- `pnpm build` — type-check and build the production application
+- `pnpm preview` — preview the production build
+- `pnpm check` — run the TypeScript compiler without emitting files
 
-- `npm run dev` - Start development server
-- `npm run build` - Build the production application
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm test` - Run Vitest tests
+## Architecture
 
-## Architecture Overview
+This is a client-side rendered React portfolio using:
 
-This is a Next.js 14 App Router portfolio/blog website with the following key structure:
+- Vite and TypeScript
+- TanStack Router with a code-based, type-safe route tree
+- TanStack Markdown for blog rendering
+- TanStack Highlight for synchronous code highlighting
+- Tailwind CSS v4
+- shadcn/ui `base-nova` components backed by Base UI
 
-### Core Technologies
-- Next.js 14 with App Router
-- TypeScript
-- TailwindCSS with ShadCN/UI components
-- MDX for blog content
-- Vitest for testing
+### Application structure
 
-### Application Structure
+- `src/router.tsx` defines the complete client route tree.
+- `src/pages/` contains route-level React components.
+- `src/components/` contains shared application components.
+- `src/components/ui/` contains open-code shadcn components.
+- `src/lib/content.ts` imports and parses repository-authored MDX as raw text.
+- `src/lib/highlight.ts` connects TanStack Highlight to TanStack Markdown.
+- `content/` contains blog source files and frontmatter.
+- `public/images/` contains responsive photography assets.
 
-**Content Management:**
-- Blog posts are stored as MDX files in `/content/`
-- Blog metadata parsing and retrieval handled by `lib/blogs.ts`
-- Frontmatter format includes title, publishedAt, summary, and optional image
+Blog files may contain the legacy `<MyButton />` marker. `BlogContent` splits on
+that marker and renders the surrounding text with TanStack Markdown while
+placing the interactive React counter between the resulting sections. Do not
+pass MDX or JSX directly to TanStack Markdown.
 
-**Routing Structure:**
-- `/` - Homepage with introduction
-- `/blogs` - Blog listing page
-- `/blogs/[slug]` - Individual blog posts (dynamic routing)
-- `/software` - Software projects showcase
-- `/photography` - Photography portfolio with dynamic routing
-- `/biotech` - Biotech section
+## Routing and deployment
 
-**Component Architecture:**
-- Reusable UI components in `components/ui/` (ShadCN)
-- Custom components in `components/`
-- Page-specific components co-located in `app/` directories
-- Global layout with Header/Footer in `app/layout.tsx`
+The application is a static SPA. `public/_redirects` provides an `index.html`
+fallback for Cloudflare Pages so direct requests to client routes work.
 
-**Key Features:**
-- Responsive design with mobile-first approach
-- Static image optimization with multiple WebP formats in `/public/images/`
-- Custom font loading via `lib/fonts.ts`
-- Utility functions in `lib/utils.ts`
+## UI conventions
 
-### Testing Setup
-- Vitest configured with React Testing Library
-- Test setup in `setupTests.ts`
-- Example test in `app/page.test.tsx`
-
-### Image Handling
-Multiple responsive image formats are pre-generated (200w, 420w, 640w, 960w, 1280w) in WebP format for photography content.
+Use components from `src/components/ui/` and preserve the Base UI component
+base in `components.json`. For link-shaped buttons, apply `buttonVariants` to a
+semantic TanStack `Link` or anchor rather than rendering a link through the
+Base UI `Button` primitive.

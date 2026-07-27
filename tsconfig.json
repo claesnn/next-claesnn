@@ -1,21 +1,17 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
-  },
-  "include": [
-    ".astro/types.d.ts",
-    "src/**/*",
-    "content/**/*",
-    "lib/**/*",
-    "astro.config.mjs",
-    "tailwind.config.ts"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  }
 }
