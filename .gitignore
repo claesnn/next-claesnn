@@ -17,6 +17,7 @@
 /build
 /dist
 /.astro
+/.react-router
 
 # misc
 .DS_Store

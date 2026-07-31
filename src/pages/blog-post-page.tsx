@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { href, Link } from "react-router"
 import { ArrowLeftIcon } from "lucide-react"
 import { useEffect } from "react"
 
@@ -15,7 +15,7 @@ export function BlogPostPage({ post }: { post: PreparedBlogPost }) {
     <article className="page-shell">
       <header className="mx-auto max-w-4xl pb-10 pt-12 text-center sm:pt-18">
         <Link
-          to="/blogs"
+          to={href("/blogs")}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
         >
           <ArrowLeftIcon className="size-4" />

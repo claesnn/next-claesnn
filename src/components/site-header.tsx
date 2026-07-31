@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router"
+import { href, Link, useLocation } from "react-router"
 import { MenuIcon } from "lucide-react"
 import { useState } from "react"
 
@@ -36,7 +36,7 @@ function NavLink({
 
   return (
     <Link
-      to={to}
+      to={href(to)}
       onClick={onNavigate}
       className={cn(
         "relative font-medium text-muted-foreground transition-colors hover:text-foreground",
@@ -64,7 +64,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-foreground/8 bg-background/88 backdrop-blur-xl">
       <div className="page-shell flex h-18 items-center justify-between">
         <Link
-          to="/"
+          to={href("/")}
           className="group flex items-center gap-3"
           aria-label="Claes Nymand Nilsson — home"
         >

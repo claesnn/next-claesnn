@@ -1,4 +1,4 @@
-import { Link } from "react-router"
+import { href, Link } from "react-router"
 import { ArrowDownIcon, ArrowUpIcon, MoveUpRightIcon } from "lucide-react"
 
 import { AuthorInfo } from "@/components/author-info"
@@ -44,7 +44,7 @@ export function BlogsPage({
         {posts.map((post, index) => (
           <Link
             key={post.slug}
-            to={`/blogs/${post.slug}`}
+            to={href("/blogs/:slug", { slug: post.slug })}
             prefetch="intent"
             className={index === 0 ? "md:col-span-2" : undefined}
           >

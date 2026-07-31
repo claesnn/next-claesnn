@@ -2,7 +2,7 @@
 
 ## Development commands
 
-- `pnpm dev` — start the Vite development server
+- `pnpm dev` — start the React Router development server
 - `pnpm build` — type-check and build the production application
 - `pnpm preview` — preview the production build
 - `pnpm check` — run the TypeScript compiler without emitting files
@@ -11,8 +11,7 @@
 
 This is a client-side rendered React portfolio using:
 
-- Vite and TypeScript
-- TanStack Router with a code-based, type-safe route tree
+- React Router 8.3 Framework Mode, Vite, and TypeScript
 - TanStack Markdown for blog rendering
 - TanStack Highlight for synchronous code highlighting
 - Tailwind CSS v4
@@ -20,7 +19,8 @@ This is a client-side rendered React portfolio using:
 
 ### Application structure
 
-- `src/router.tsx` defines the complete client route tree.
+- `src/routes.ts` defines the route tree; `src/routes/` contains Framework route modules.
+- `.react-router/types/` contains generated route types and is not committed.
 - `src/pages/` contains route-level React components.
 - `src/components/` contains shared application components.
 - `src/components/ui/` contains open-code shadcn components.
@@ -36,12 +36,15 @@ pass MDX or JSX directly to TanStack Markdown.
 
 ## Routing and deployment
 
-The application is a static SPA. `public/_redirects` provides an `index.html`
-fallback for Cloudflare Pages so direct requests to client routes work.
+The application uses React Router Framework Mode with `ssr: false`. It builds a
+static SPA into `build/client`. `public/_redirects` provides an `index.html`
+fallback for Cloudflare Pages so direct requests to client routes work. Use
+`clientLoader` for child-route browser data; Framework SPA Mode only permits a
+server `loader` on the root route.
 
 ## UI conventions
 
 Use components from `src/components/ui/` and preserve the Base UI component
 base in `components.json`. For link-shaped buttons, apply `buttonVariants` to a
-semantic TanStack `Link` or anchor rather than rendering a link through the
+semantic React Router `Link` or anchor rather than rendering a link through the
 Base UI `Button` primitive.

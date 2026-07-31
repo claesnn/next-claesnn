@@ -20,7 +20,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "rootDirs": [".", "./.react-router/types"],
     "types": ["vite/client"]
   },
-  "include": ["src"]
+  "include": ["src", ".react-router/types/**/*"]
 }
