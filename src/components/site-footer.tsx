@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { Link } from "react-router"
 import { GithubIcon, InstagramIcon, LinkedinIcon } from "lucide-react"
 
 const socials = [

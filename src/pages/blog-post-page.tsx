@@ -1,16 +1,12 @@
-import { Link } from "@tanstack/react-router"
+import { Link } from "react-router"
 import { ArrowLeftIcon } from "lucide-react"
-import { useEffect, useLayoutEffect } from "react"
+import { useEffect } from "react"
 
 import { AuthorInfo } from "@/components/author-info"
 import { BlogContent } from "@/components/blog-content"
 import { formatDate, type PreparedBlogPost } from "@/lib/content"
 
 export function BlogPostPage({ post }: { post: PreparedBlogPost }) {
-  useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" })
-  }, [post.slug])
-
   useEffect(() => {
     document.title = `${post.metadata.title} — Claes Nymand Nilsson`
   }, [post.metadata.title])

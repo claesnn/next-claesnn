@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { Link } from "react-router"
 import {
   ArrowRightIcon,
   FlaskConicalIcon,
@@ -202,8 +202,7 @@ export function HomePage() {
           {photographs.map((photo) => (
             <Link
               key={photo.id}
-              to="/photography/$slug"
-              params={{ slug: String(photo.id) }}
+              to={`/photography/${photo.id}`}
               className={cn(
                 "group relative overflow-hidden rounded-2xl bg-muted",
                 photo.className,

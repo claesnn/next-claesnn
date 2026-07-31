@@ -1,4 +1,4 @@
-import { Link, useLocation } from "@tanstack/react-router"
+import { Link, useLocation } from "react-router"
 import { MenuIcon } from "lucide-react"
 import { useState } from "react"
 
@@ -31,7 +31,7 @@ function NavLink({
   mobile?: boolean
   onNavigate?: () => void
 }) {
-  const pathname = useLocation({ select: (location) => location.pathname })
+  const { pathname } = useLocation()
   const active = pathname === to || pathname.startsWith(`${to}/`)
 
   return (

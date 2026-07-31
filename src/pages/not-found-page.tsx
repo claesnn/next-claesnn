@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { Link } from "react-router"
 import { ArrowLeftIcon } from "lucide-react"
 
 import { buttonVariants } from "@/components/ui/button"
