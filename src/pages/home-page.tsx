@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { href, Link } from "react-router"
 import {
   ArrowRightIcon,
   FlaskConicalIcon,
@@ -73,14 +73,14 @@ export function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              to="/biotech"
+              to={href("/biotech")}
               className={cn(buttonVariants({ size: "lg" }), "h-11 px-5")}
             >
               Explore biotech work
               <ArrowRightIcon data-icon="inline-end" />
             </Link>
             <Link
-              to="/software"
+              to={href("/software")}
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
                 "h-11 px-5",
@@ -140,7 +140,7 @@ export function HomePage() {
         <div className="page-shell py-14">
           <div className="grid gap-5 md:grid-cols-2">
             {disciplines.map(({ icon: Icon, ...item }) => (
-              <Link key={item.label} to={item.to} className="group">
+              <Link key={item.label} to={href(item.to)} className="group">
                 <Card className="h-full transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-primary/30">
                   <CardHeader>
                     <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-secondary text-primary">
@@ -176,7 +176,7 @@ export function HomePage() {
             <h2 className="section-title mt-3">Selected biotech work</h2>
           </div>
           <Link
-            to="/biotech"
+            to={href("/biotech")}
             className="text-sm font-semibold text-primary hover:underline"
           >
             Full biotech profile →
@@ -192,7 +192,7 @@ export function HomePage() {
             <h2 className="section-title mt-3">A different way of observing</h2>
           </div>
           <Link
-            to="/photography"
+            to={href("/photography")}
             className="text-sm font-semibold text-primary hover:underline"
           >
             View photography →
@@ -202,8 +202,7 @@ export function HomePage() {
           {photographs.map((photo) => (
             <Link
               key={photo.id}
-              to="/photography/$slug"
-              params={{ slug: String(photo.id) }}
+              to={href("/photography/:slug", { slug: String(photo.id) })}
               className={cn(
                 "group relative overflow-hidden rounded-2xl bg-muted",
                 photo.className,

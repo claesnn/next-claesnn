@@ -17,6 +17,8 @@ export type PreparedBlogPost = BlogPost & {
   sections: MarkdownDocument[]
 }
 
+const preparedPosts = new Map<string, PreparedBlogPost>()
+
 const modules = import.meta.glob("../../content/*.mdx", {
   eager: true,
   import: "default",
@@ -68,7 +70,10 @@ export function getBlogPost(slug: string) {
 }
 
 export function prepareBlogPost(post: BlogPost): PreparedBlogPost {
-  return {
+  const cachedPost = preparedPosts.get(post.slug)
+  if (cachedPost) return cachedPost
+
+  const preparedPost = {
     ...post,
     sections: post.content.split(/<MyButton\s*\/>/).map((section) =>
       parseMarkdown(section.trim(), {
@@ -76,6 +81,9 @@ export function prepareBlogPost(post: BlogPost): PreparedBlogPost {
       }),
     ),
   }
+
+  preparedPosts.set(post.slug, preparedPost)
+  return preparedPost
 }
 
 export function formatDate(date: string) {

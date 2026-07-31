@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { href, Link } from "react-router"
 import { ArrowLeftIcon, ArrowRightIcon, ExpandIcon } from "lucide-react"
 
 import { PhotoDialog } from "@/components/photo-dialog"
@@ -14,7 +14,7 @@ export function PhotoPage({ image }: { image: number }) {
     <div className="page-shell py-10">
       <div className="mb-6 flex items-center justify-between">
         <Link
-          to="/photography"
+          to={href("/photography")}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
         >
           <ArrowLeftIcon className="size-4" />
@@ -45,16 +45,14 @@ export function PhotoPage({ image }: { image: number }) {
 
       <nav className="mt-6 flex items-center justify-between">
         <Link
-          to="/photography/$slug"
-          params={{ slug: String(previous) }}
+          to={href("/photography/:slug", { slug: String(previous) })}
           className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
         >
           <ArrowLeftIcon data-icon="inline-start" />
           Previous
         </Link>
         <Link
-          to="/photography/$slug"
-          params={{ slug: String(next) }}
+          to={href("/photography/:slug", { slug: String(next) })}
           className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
         >
           Next

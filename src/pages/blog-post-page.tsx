@@ -1,16 +1,12 @@
-import { Link } from "@tanstack/react-router"
+import { href, Link } from "react-router"
 import { ArrowLeftIcon } from "lucide-react"
-import { useEffect, useLayoutEffect } from "react"
+import { useEffect } from "react"
 
 import { AuthorInfo } from "@/components/author-info"
 import { BlogContent } from "@/components/blog-content"
 import { formatDate, type PreparedBlogPost } from "@/lib/content"
 
 export function BlogPostPage({ post }: { post: PreparedBlogPost }) {
-  useLayoutEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" })
-  }, [post.slug])
-
   useEffect(() => {
     document.title = `${post.metadata.title} — Claes Nymand Nilsson`
   }, [post.metadata.title])
@@ -19,7 +15,7 @@ export function BlogPostPage({ post }: { post: PreparedBlogPost }) {
     <article className="page-shell">
       <header className="mx-auto max-w-4xl pb-10 pt-12 text-center sm:pt-18">
         <Link
-          to="/blogs"
+          to={href("/blogs")}
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
         >
           <ArrowLeftIcon className="size-4" />

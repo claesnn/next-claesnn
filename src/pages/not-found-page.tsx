@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { href, Link } from "react-router"
 import { ArrowLeftIcon } from "lucide-react"
 
 import { buttonVariants } from "@/components/ui/button"
@@ -11,7 +11,7 @@ export function NotFoundPage() {
       <p className="mt-5 max-w-md text-lg leading-8 text-muted-foreground">
         The page may have moved, or it may never have existed.
       </p>
-      <Link to="/" className={`${buttonVariants({ size: "lg" })} mt-8`}>
+      <Link to={href("/")} className={`${buttonVariants({ size: "lg" })} mt-8`}>
         <ArrowLeftIcon data-icon="inline-start" />
         Back home
       </Link>

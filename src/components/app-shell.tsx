@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "@tanstack/react-router"
+import { Outlet, useLocation } from "react-router"
 import { useEffect } from "react"
 
 import { SiteFooter } from "@/components/site-footer"
@@ -13,7 +13,7 @@ const titles: Record<string, string> = {
 }
 
 export function AppShell() {
-  const pathname = useLocation({ select: (location) => location.pathname })
+  const { pathname } = useLocation()
 
   useEffect(() => {
     document.title =

@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { href, Link } from "react-router"
 import { GithubIcon, InstagramIcon, LinkedinIcon } from "lucide-react"
 
 const socials = [
@@ -20,7 +20,7 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-foreground/8 bg-card/45">
       <div className="page-shell grid gap-10 py-12 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <Link to="/" className="font-serif text-2xl">
+          <Link to={href("/")} className="font-serif text-2xl">
             Claes Nymand Nilsson
           </Link>
           <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">

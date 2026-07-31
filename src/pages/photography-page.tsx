@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router"
+import { href, Link } from "react-router"
 
 import {
   PhotoDialog,
@@ -28,8 +28,7 @@ export function PhotographyPage() {
             className="group relative mb-4 break-inside-avoid overflow-hidden rounded-xl bg-muted"
           >
             <Link
-              to="/photography/$slug"
-              params={{ slug: String(index) }}
+              to={href("/photography/:slug", { slug: String(index) })}
               tabIndex={-1}
               aria-hidden="true"
             >
