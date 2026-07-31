@@ -4,9 +4,9 @@ import { useEffect } from "react"
 
 import { AuthorInfo } from "@/components/author-info"
 import { BlogContent } from "@/components/blog-content"
-import { formatDate, type BlogPost } from "@/lib/content"
+import { formatDate, type PreparedBlogPost } from "@/lib/content"
 
-export function BlogPostPage({ post }: { post: BlogPost }) {
+export function BlogPostPage({ post }: { post: PreparedBlogPost }) {
   useEffect(() => {
     document.title = `${post.metadata.title} — Claes Nymand Nilsson`
   }, [post.metadata.title])
@@ -31,7 +31,7 @@ export function BlogPostPage({ post }: { post: BlogPost }) {
       </header>
 
       <div className="mx-auto max-w-3xl border-t border-foreground/10 pt-10">
-        <BlogContent source={post.content} />
+        <BlogContent sections={post.sections} />
       </div>
 
       <div className="mx-auto mt-16 max-w-4xl">

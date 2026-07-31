@@ -1,3 +1,5 @@
+import { parseMarkdown, type MarkdownDocument } from "@tanstack/markdown"
+
 export type BlogMetadata = {
   title: string
   publishedAt: string
@@ -9,6 +11,10 @@ export type BlogPost = {
   slug: string
   metadata: BlogMetadata
   content: string
+}
+
+export type PreparedBlogPost = BlogPost & {
+  sections: MarkdownDocument[]
 }
 
 const modules = import.meta.glob("../../content/*.mdx", {
@@ -59,6 +65,17 @@ export const blogPosts = Object.entries(modules)
 
 export function getBlogPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug)
+}
+
+export function prepareBlogPost(post: BlogPost): PreparedBlogPost {
+  return {
+    ...post,
+    sections: post.content.split(/<MyButton\s*\/>/).map((section) =>
+      parseMarkdown(section.trim(), {
+        headingIds: true,
+      }),
+    ),
+  }
 }
 
 export function formatDate(date: string) {

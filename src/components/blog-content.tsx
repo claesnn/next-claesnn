@@ -1,3 +1,4 @@
+import type { MarkdownDocument } from "@tanstack/markdown"
 import { Markdown, type MarkdownComponents } from "@tanstack/markdown/react"
 import { useState } from "react"
 
@@ -34,22 +35,19 @@ function CounterButton() {
   )
 }
 
-export function BlogContent({ source }: { source: string }) {
-  const sections = source.split(/<MyButton\s*\/>/)
-
+export function BlogContent({ sections }: { sections: MarkdownDocument[] }) {
   return (
     <>
       <style>{highlightThemeCss}</style>
       <div className="article-content">
         {sections.map((section, index) => (
-          <div key={`${index}-${section.slice(0, 20)}`} className="contents">
+          <div key={index} className="contents">
             <Markdown
               components={components}
               highlighter={markdownHighlighter}
-              headingIds
               codeLineNumbers
             >
-              {section.trim()}
+              {section}
             </Markdown>
             {index < sections.length - 1 && <CounterButton />}
           </div>
