@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-router";
 
 import { AppShell } from "@/components/app-shell";
-import { getBlogPost } from "@/lib/content";
+import { getBlogPost, prepareBlogPost } from "@/lib/content";
 import { imageCount } from "@/lib/image-meta";
 import { BiotechPage } from "@/pages/biotech-page";
 import { BlogPostPage } from "@/pages/blog-post-page";
@@ -65,9 +65,14 @@ const blogsRoute = createRoute({
 const blogPostRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/blogs/$slug",
+  loader: ({ params }) => {
+    const post = getBlogPost(params.slug);
+    return post ? prepareBlogPost(post) : undefined;
+  },
+  staleTime: Infinity,
+  preloadStaleTime: Infinity,
   component: function BlogPostRouteComponent() {
-    const { slug } = blogPostRoute.useParams();
-    const post = getBlogPost(slug);
+    const post = blogPostRoute.useLoaderData();
     return post ? <BlogPostPage post={post} /> : <NotFoundPage />;
   },
 });
@@ -112,7 +117,6 @@ const routeTree = rootRoute.addChildren([
 export const router = createRouter({
   routeTree,
   defaultPreload: "intent",
-  defaultPreloadStaleTime: 0,
   scrollRestoration: true,
   scrollRestorationBehavior: "instant",
 });

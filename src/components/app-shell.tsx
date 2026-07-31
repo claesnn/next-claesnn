@@ -16,7 +16,6 @@ export function AppShell() {
   const pathname = useLocation({ select: (location) => location.pathname })
 
   useEffect(() => {
-    window.scrollTo({ top: 0 })
     document.title =
       titles[pathname] ??
       (pathname.startsWith("/blogs/")
